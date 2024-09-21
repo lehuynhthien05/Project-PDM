@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.ChoosingController">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="left-form" stylesheets="@LoginUserDes.css">
+                    <children>
+                        <Label layoutX="215.0" layoutY="55.0" text="Welcome  to" textFill="#f4f43e">
+                            <font>
+                                <Font name="#9Slide03 Encode SeEx Black" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="134.0" layoutY="106.0" text="Parking Booking Systems" textFill="#d8ff2b">
+                            <font>
+                                <Font name="#9Slide03 Encode SeEx Black" size="24.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="admin" layoutX="113.0" layoutY="200.0" mnemonicParsing="false" onAction="#choose" prefHeight="65.0" prefWidth="132.0" text="Admin" textFill="#cf1212">
+                            <font>
+                                <Font name="#9Slide03 Maven Pro" size="23.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="user" layoutX="354.0" layoutY="200.0" mnemonicParsing="false" onAction="#choose" prefHeight="65.0" prefWidth="132.0" text="User" textFill="#095f69">
+                            <font>
+                                <Font name="#9Slide03 Maven Pro" size="23.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="close" layoutX="548.0" layoutY="2.0" mnemonicParsing="false" onAction="#setClose" prefHeight="24.0" prefWidth="53.0" styleClass="close" stylesheets="@LoginUserDes.css">
+                            <graphic>
+                                <FontAwesomeIcon glyphName="CLOSE" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
