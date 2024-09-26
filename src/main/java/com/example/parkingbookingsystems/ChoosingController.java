@@ -56,5 +56,4 @@ public class ChoosingController {
             e.printStackTrace();
         }
     }
-
 }
