@@ -18,6 +18,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.mindrot.jbcrypt.BCrypt;
+import com.example.parkingbookingsystems.security.PasswordUtils;
+
 public class LoginController {
 
     @FXML
@@ -28,6 +31,10 @@ public class LoginController {
 
     @FXML
     private Button close;
+
+    @FXML
+    private Button register_btn;
+
 
     @FXML
     private Button loginBtn;
@@ -45,7 +52,7 @@ public class LoginController {
 
     @FXML
     public void logAdmin() throws SQLException {
-        String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM admin WHERE username = ?";
         Database db = new Database();
         connect = db.connectdb();
 
@@ -53,7 +60,6 @@ public class LoginController {
             if (connect != null) {
                 prepare = connect.prepareStatement(sql);
                 prepare.setString(1, username.getText());
-                prepare.setString(2, password.getText());
 
                 result = prepare.executeQuery();
 
@@ -64,38 +70,44 @@ public class LoginController {
                     alert.showAndWait();
                 } else {
                     if (result.next()) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Login successful");
-                        alert.showAndWait();
+                        String hashed = result.getString("password");
+                        if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setHeaderText(null);
+                            alert.setContentText("Login successful");
+                            alert.showAndWait();
 
-                        loginBtn.getScene().getWindow().hide();
-                        Platform.runLater(() -> {
-                            try {
-                                Parent root = FXMLLoader.load(getClass().getResource("/com/example/employeemanagementsystem/dashboard.fxml"));
+                            loginBtn.getScene().getWindow().hide();
+                            Platform.runLater(() -> {
+                                try {
+                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/employeemanagementsystem/dashboard.fxml"));
 
-                                Scene scene = new Scene(root);
-                                Stage stage = new Stage();
+                                    Scene scene = new Scene(root);
+                                    Stage stage = new Stage();
 
-                                root.setOnMousePressed(event -> {
-                                    x = event.getSceneX();
-                                    y = event.getSceneY();
-                                });
+                                    root.setOnMousePressed(event -> {
+                                        x = event.getSceneX();
+                                        y = event.getSceneY();
+                                    });
 
-                                root.setOnMouseDragged(mouseEvent -> {
-                                    stage.setX(mouseEvent.getScreenX() - x);
-                                    stage.setY(mouseEvent.getScreenY() - y);
-                                });
+                                    root.setOnMouseDragged(mouseEvent -> {
+                                        stage.setX(mouseEvent.getScreenX() - x);
+                                        stage.setY(mouseEvent.getScreenY() - y);
+                                    });
 
-                                stage.initStyle(StageStyle.TRANSPARENT);
-                                stage.setScene(scene);
-                                stage.show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
-
-
+                                    stage.initStyle(StageStyle.TRANSPARENT);
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setContentText("Invalid username or password");
+                            alert.showAndWait();
+                        }
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -106,10 +118,9 @@ public class LoginController {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("Failed to connect to the database");
+                alert.setContentText("Database connection failed");
                 alert.showAndWait();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -132,6 +143,23 @@ public class LoginController {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void registerButton() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/RegisterAdmin.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage currentStage = (Stage) register_btn.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

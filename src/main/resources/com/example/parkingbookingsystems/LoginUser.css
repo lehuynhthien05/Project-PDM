@@ -1,0 +1,57 @@
+/* Style for the BorderPane (main container) */
+.root {
+    -fx-background-color: #2C3E50; /* Dark blue background */
+}
+
+/* Style for the ImageView (Car Image) */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);
+}
+
+/* Style for the Text (Parking Booking System) */
+.text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #FFFFFF; /* White text color */
+}
+
+/* Style for the User Login Section */
+.anchor-pane {
+    -fx-background-color: #F2F2F2; /* Light gray background */
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+}
+
+/* Style for TextField and PasswordField */
+.text-field, .password-field {
+    -fx-background-color: #ECF0F1; /* Slightly lighter gray */
+    -fx-border-color: #BDC3C7;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Style for FontAwesome Icons */
+.font-awesome-icon {
+    -fx-fill: #2C3E50; /* Dark blue */
+}
+
+/* Style for the Login Button */
+.button {
+    -fx-background-color: #3498DB; /* Blue */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0);
+}
+
+/* Hover effect for the Login Button */
+.button:hover {
+    -fx-background-color: #2980B9;
+}
+
+/* Style for the Hyperlink (Forgot Password) */
+.hyperlink {
+    -fx-text-fill: #3498DB; /* Blue text */
+}
