@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Database {
-    private Connection connect;
+    private static Connection connect;
 
-    public Connection connectdb() {
+    public static Connection connectdb() {
         SQLServerDataSource ds = new SQLServerDataSource();
         ds.setUser("sa");
         ds.setPassword("123");

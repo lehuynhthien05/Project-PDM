@@ -41,6 +41,9 @@ public class LoginUserController {
     private Button return_btn;
 
     @FXML
+    private Button registerBtn;
+
+    @FXML
     public void close(ActionEvent event) {
         System.exit(0);
     }
@@ -116,6 +119,23 @@ public class LoginUserController {
         } catch (SQLException e) {
             e.printStackTrace();
             showError("Database error occurred.");
+        }
+    }
+
+    public void registerButton() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/RegisterUser.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage currentStage = (Stage) registerBtn.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

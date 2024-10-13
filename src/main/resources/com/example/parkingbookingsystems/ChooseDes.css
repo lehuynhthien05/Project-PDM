@@ -1,0 +1,98 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4a4a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.booking-container {
+    background-color: #3e4e6b;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Title styles */
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Car icon */
+.car-icon {
+    width: 50px;
+    height: 30px;
+    background-color: #ffd700;
+    margin: 0 auto 20px;
+    border-radius: 5px;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Button styles */
+.choice-button {
+    background-color: #d3d3d3;
+    border: none;
+    color: #333;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+.choice-button:hover {
+    background-color: #b0b0b0;
+}
+
+/* Label styles */
+.button-label {
+    display: block;
+    color: white;
+    margin-top: 5px;
+}
+
+/* Circles behind buttons */
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #5a6b8a;
+    position: absolute;
+    z-index: -1;
+}
+
+.circle-left {
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.circle-right {
+    top: 50%;
+    right: 20%;
+    transform: translate(50%, -50%);
+}
