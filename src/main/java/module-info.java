@@ -13,7 +13,11 @@ module com.example.parkingbookingsystems {
     requires java.sql;
     requires mssql.jdbc;
     requires jBCrypt;
+    requires transitive mysql.connector.j;
+    requires jakarta.mail;
 
     opens com.example.parkingbookingsystems to javafx.fxml;
     exports com.example.parkingbookingsystems;
+    exports com.example.parkingbookingsystems.ResetPassword;
+    opens com.example.parkingbookingsystems.ResetPassword to javafx.fxml;
 }

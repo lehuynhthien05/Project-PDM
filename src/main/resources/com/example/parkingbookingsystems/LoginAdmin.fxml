@@ -67,6 +67,11 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
+            <Button fx:id="returnchoose" layoutX="244.0" layoutY="11.0" minHeight="8.0" mnemonicParsing="false" onAction="#returnToChoose" prefHeight="8.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <FontAwesomeIcon fill="#3a4558" glyphName="SIGN_OUT" size="17" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </right>
