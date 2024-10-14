@@ -1,15 +1,13 @@
 package com.example.parkingbookingsystems;
 
-import javafx.application.Platform;
+import com.example.parkingbookingsystems.email.EmailUtils;
+import com.example.parkingbookingsystems.phone.PhoneUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,13 +15,14 @@ import java.sql.SQLException;
 
 import javafx.scene.control.Button;
 
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 
-import org.mindrot.jbcrypt.BCrypt;
 import com.example.parkingbookingsystems.security.PasswordUtils;
-import com.example.parkingbookingsystems.Database;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class RegisterController {
+public class RegisterUserController {
 
     @FXML
     private TextField register_email;
@@ -49,6 +48,9 @@ public class RegisterController {
     @FXML
     private Button close;
 
+    @FXML
+    private Hyperlink loginbtn;
+
     public void close(){
         System.exit(0);
     }
@@ -60,14 +62,42 @@ public class RegisterController {
     private PreparedStatement prepare;
     private ResultSet result;
 
+    public void returnUserLogin() {
+        try {
+            Stage stage = (Stage) loginbtn.getScene().getWindow();
+            stage.close();
+            Stage primaryStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/loginUser.fxml"));
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void registerButton() {
+        if (!EmailUtils.isValidEmail(register_email.getText())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid email address");
+            alert.showAndWait();
+            return;
+        }
+        if (!PhoneUtils.isValidPhoneNumber(register_phone.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid 10-digit phone number");
+            alert.showAndWait();
+            return;
+        }
         if (register_email.getText().isEmpty() || register_username.getText().isEmpty() || register_password.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Please fill all the fields");
             alert.showAndWait();
         } else {
-            String sql = "INSERT INTO admin (username, password, firstName, lastName, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO [User] (username, password, firstName, lastName, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
             connect = Database.connectdb();
 
             try {

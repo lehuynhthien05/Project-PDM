@@ -18,7 +18,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.mindrot.jbcrypt.BCrypt;
 import com.example.parkingbookingsystems.security.PasswordUtils;
 
 public class LoginController {
@@ -35,6 +34,8 @@ public class LoginController {
     @FXML
     private Button register_btn;
 
+    @FXML
+    private Button returnchoose;
 
     @FXML
     private Button loginBtn;
@@ -143,6 +144,9 @@ public class LoginController {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
+
+            Stage currentStage = (Stage) returnchoose.getScene().getWindow();
+            currentStage.hide();
         } catch (IOException e) {
             e.printStackTrace();
         }

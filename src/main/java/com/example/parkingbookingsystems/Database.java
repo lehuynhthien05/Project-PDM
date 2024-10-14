@@ -14,13 +14,13 @@ public class Database {
         ds.setPassword("123");
         ds.setServerName("huynhthienle");
         ds.setPortNumber(1433);
-        ds.setDatabaseName("ParkingArea");
+        ds.setDatabaseName("ParkingBookingSystem");
 
         ds.setURL("jdbc:sqlserver://huynhthienle:1433;databaseName=test;encrypt=true;trustServerCertificate=true");
 
         try {
             connect = ds.getConnection();
-            System.out.println("Connected");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

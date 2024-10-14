@@ -37,8 +37,8 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="108.0" layoutY="217.0" promptText="User name" style="-fx-background-color: transparent; -fx-border-color: #3a4558; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField layoutX="108.0" layoutY="292.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #3a4558; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="username" layoutX="108.0" layoutY="217.0" promptText="User name" style="-fx-background-color: transparent; -fx-border-color: #3a4558; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="password" layoutX="108.0" layoutY="292.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #3a4558; -fx-border-width: 0px 0px 2px 0px;" />
             <FontAwesomeIcon fill="#3a4558" glyphName="KEY" layoutX="83.0" layoutY="317.0" size="20" text="" />
             <FontAwesomeIcon fill="#3a4558" glyphName="USER" layoutX="84.0" layoutY="242.0" size="20" text="" />
             <Hyperlink layoutX="105.0" layoutY="444.0" text="Forgot Your Password ?" textFill="#3a4558" />
@@ -66,6 +66,11 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
+            </Button>
+            <Button fx:id="return_btn" layoutX="267.0" layoutY="14.0" minHeight="8.0" mnemonicParsing="false" onAction="#returnToChoose" prefHeight="19.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <FontAwesomeIcon glyphName="SIGN_OUT" size="17" />
+               </graphic>
             </Button>
          </children>
       </AnchorPane>
