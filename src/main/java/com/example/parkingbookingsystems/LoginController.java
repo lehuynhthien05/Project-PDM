@@ -54,6 +54,7 @@ public class LoginController {
     @FXML
     public void logAdmin() throws SQLException {
         String sql = "SELECT * FROM admin WHERE username = ?";
+
         Database db = new Database();
         connect = db.connectdb();
 
@@ -81,7 +82,7 @@ public class LoginController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/employeemanagementsystem/dashboard.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/employeemanagementsystem/ContentAreaAndUser.fxml"));
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
@@ -137,6 +138,7 @@ public class LoginController {
 
     public void returnToChoose() {
         try {
+
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/Choose.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();

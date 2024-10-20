@@ -1,0 +1,100 @@
+/* Phan cua side bar */
+.sidebar{
+    -fx-background-color: rgb(58, 69, 88);
+}
+.button {
+    -fx-background-color: rgb(58, 69, 88);
+}
+.sidebar-user-btn{
+     -fx-background-color: transparent;
+     -fx-background-radius: 0px;
+     -fx-text-fill: #b8b1b1;
+}
+
+.sidebar-btn{
+     -fx-background-color: transparent;
+     -fx-background-radius: 0px;
+     -fx-text-fill: #b8b1b1;
+}
+
+.sidebar-btn:hover{
+     -fx-background-color: transparent;
+     -fx-background-radius: 0px;
+     -fx-text-fill: #b8b1b1;
+     -fx-border-color: rgb(22, 169, 250);
+     -fx-border-width: 0px 0px 0px 3px;
+}
+
+.label{
+    -fx-text-fill: #b8b1b1;
+}
+
+.sidebar-btn:pressed .label{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #0099ff;
+}
+
+.sidebar-btn:pressed .sidebar-btn-icon{
+    -fx-text-fill: #0099ff;
+}
+
+.sidebar-btn-icon{
+     -fx-fill: #b8b1b1;
+}
+
+/* Toi phan Menu bar nhaaaaa */
+
+.menu-bar-btns{
+    -fx-background-color: #fff;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+}
+
+.menu-bar-btns:hover{
+    -fx-background-color: #d4d4d4;
+}
+
+.menu-bar-btns-icon{
+    -fx-fill: #999;
+}
+.menu-bar-btns:hover .menu-bar-btns-icon{
+    -fx-fill: #fff;
+}
+.menu-bar-search-field{
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+}
+.menu-bar-search-field-box{
+    -fx-prompt-text-fill: #b8b1b1;
+    -fx-text-fill: #000;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+/* Phan nay cua content area nha*/
+.content-area-circle-btns{
+     -fx-background-color: #fff;
+     -fx-background-radius: 100px;
+     -fx-border-color: #fff;
+     -fx-border-radius: 100%;
+}
+.content-area-circle-btns:hover{
+    -fx-background-color: #d4d4d4;
+    -fx-background-radius: 100px;
+}
+.content-area-circle-btns-icon{
+    -fx-fill: #b8b1b1;
+}
+.content-area-circle-btns:hover .content-area-circle-btns-icon{
+    -fx-fill: #fff;
+}
+
+
+/* Feedbacks */
+
+.feedbacks-btns:hover{
+    -fx-background-color: #FF4500;
+    -fx-background-radius: 100px;
+    -fx-border-color: #3F3131;
+}

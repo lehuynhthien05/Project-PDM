@@ -12,12 +12,11 @@ public class Database {
         SQLServerDataSource ds = new SQLServerDataSource();
         ds.setUser("sa");
         ds.setPassword("123");
-        ds.setServerName("huynhthienle");
+        ds.setServerName("LAPTOP-84HQRIOK");
         ds.setPortNumber(1433);
         ds.setDatabaseName("ParkingBookingSystem");
 
-        ds.setURL("jdbc:sqlserver://huynhthienle:1433;databaseName=test;encrypt=true;trustServerCertificate=true");
-
+        ds.setTrustServerCertificate(true);
         try {
             connect = ds.getConnection();
 

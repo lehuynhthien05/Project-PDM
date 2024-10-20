@@ -12,9 +12,7 @@ module com.example.parkingbookingsystems {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires mssql.jdbc;
-    requires jBCrypt;
     requires transitive mysql.connector.j;
-    requires jakarta.mail;
 
     opens com.example.parkingbookingsystems to javafx.fxml;
     exports com.example.parkingbookingsystems;

@@ -1,0 +1,29 @@
+.root {
+    -fx-background-color: #333333; /* Dark background */
+}
+
+.label {
+    -fx-text-fill: white; /* White text */
+}
+
+.text-field {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #cccccc; /* Gray border */
+    -fx-border-width: 1px;
+}
+
+.password-field {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #cccccc; /* Gray border */
+    -fx-border-width: 1px;
+}
+
+.button {
+    -fx-background-color: #007bff; /* Blue background */
+    -fx-text-fill: white; /* White text */
+}
+
+.button:hover {
+    -fx-background-color: #0069d9; /* Darker blue on hover */
+}
+

@@ -79,6 +79,7 @@ public class LoginUserController {
                 } else {
                     if (result.next()) {
                         String hashed = result.getString("password");
+                        String loginUsername = username.getText();
                         if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
@@ -88,7 +89,12 @@ public class LoginUserController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/employeemanagementsystem/dashboard.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
+                                    Parent root = loader.load();
+
+                                    // Pass the username to the UserInterface controller
+                                    UserInterface controller = loader.getController();
+                                    controller.setLoginUsername(loginUsername);
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
