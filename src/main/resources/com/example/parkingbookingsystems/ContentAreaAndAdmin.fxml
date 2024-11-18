@@ -5,16 +5,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="adminPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@stylesheet.css">
          <children>
@@ -26,7 +25,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </ImageView>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" styleClass="sidebar-user-btn" stylesheets="@stylesheet.css" text="What's your name?">
+            <Button fx:id="logOut" contentDisplay="RIGHT" mnemonicParsing="false" styleClass="sidebar-user-btn" stylesheets="@stylesheet.css" text="LE HUYNHH THIEN">
                <font>
                   <Font name="Calibri" size="15.0" />
                </font>
@@ -45,7 +44,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
+            <HBox fx:id="usersInfor" alignment="CENTER_LEFT" layoutX="10.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -64,7 +63,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="281.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
+            <HBox fx:id="recieveFeedbacks" alignment="CENTER_LEFT" layoutX="10.0" layoutY="281.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -83,7 +82,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
+            <HBox fx:id="analytic" alignment="CENTER_LEFT" layoutX="10.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -102,7 +101,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
+            <HBox fx:id="overview" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -124,18 +123,41 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
+            <HBox fx:id="signOutAdmin" alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="252.0" style="-fx-border-color: red;" styleClass="sidebar-btn">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIcon glyphName="POWER_OFF" selectionFill="#d9d1d1" size="2em" styleClass="sidebar-btn-icon">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Label text="SIGN OUT" textFill="#b8b1b1">
+                     <font>
+                        <Font name="Consolas Bold" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="70.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
       <VBox fx:id="content_area" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css">
          <children>
             <HBox fx:id="menubar" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" style="-fx-background-color: #fff; -fx-border-color: #CCCCCC; -fx-border-width: 0px 0px 1px 0px;" stylesheets="@stylesheet.css">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="90.0" prefWidth="80.0" styleClass="menu-bar-btns">
+                  <Button fx:id="openClose" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="90.0" prefWidth="80.0" styleClass="menu-bar-btns">
                      <graphic>
                         <FontAwesomeIcon glyphName="TH_LIST" size="2.5em" styleClass="menu-bar-btns-icon" text="" />
                      </graphic>
                   </Button>
-                  <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-alignment: CENTER_LEFT;" styleClass="menu-bar-search-field-box" stylesheets="@stylesheet.css" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="enterInfor" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-alignment: CENTER_LEFT;" styleClass="menu-bar-search-field-box" stylesheets="@stylesheet.css" HBox.hgrow="ALWAYS">
                      <children>
                         <FontAwesomeIcon glyphName="SEARCH" size="2.5em" styleClass="menu-bar-btns-icon" />
                         <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="49.0" prefWidth="712.0" promptText="Search for a position, information,..." style="-fx-background-color: transparent;" styleClass="menu-bar-search-field" HBox.hgrow="ALWAYS">
@@ -157,7 +179,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
+            <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
                   <VBox alignment="CENTER_LEFT">
                      <HBox.margin>
@@ -181,7 +203,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="content-area-circle-btns" text="Open">
+                        <Button fx:id="openInfor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="content-area-circle-btns" text="Open">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -192,7 +214,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button layoutX="10.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
+                        <Button fx:id="bookMark" layoutX="10.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -203,7 +225,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button layoutX="120.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
+                        <Button fx:id="editInfor" layoutX="120.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -214,7 +236,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button layoutX="166.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
+                        <Button fx:id="saveInfor" layoutX="166.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -238,22 +260,26 @@
                   <Insets bottom="10.0" top="5.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #FAF2F2;">
+            <AnchorPane prefHeight="524.0" prefWidth="850.0">
                <children>
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-color: #ccc; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Total - out of:  ..... views">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Label>
+                  <Text layoutX="78.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phan khoang trang nay t muon hien infor nhu la:" wrappingWidth="501.5999999999999">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="86.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="đã có bao nhiêu người book r" wrappingWidth="437.5999694824218">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="78.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Còn bao nhiêu chỗ trống" wrappingWidth="437.5999694824218">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="125.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                </children>
-            </HBox>
+            </AnchorPane>
          </children>
       </VBox>
    </children>
