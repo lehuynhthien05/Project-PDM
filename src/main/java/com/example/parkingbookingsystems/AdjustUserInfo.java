@@ -86,8 +86,12 @@ public class AdjustUserInfo {
             prepare.setString(5, user_phone.getText());
             prepare.setString(6, this.loginUsername);
 
-            prepare.executeUpdate();
-            showAlert(Alert.AlertType.INFORMATION, "Save Successful");
+            int rowsAffected = prepare.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Save Successful");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "No user found to update.");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

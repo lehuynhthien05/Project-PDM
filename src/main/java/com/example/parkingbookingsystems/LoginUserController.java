@@ -93,8 +93,8 @@ public class LoginUserController {
                                     Parent root = loader.load();
 
                                     // Pass the username to the UserInterface controller
-                                    UserInterface controller = loader.getController();
-                                    controller.setLoginUsername(loginUsername);
+//                                    UserInterface controller = loader.getController();
+//                                    controller.setLoginUsername(loginUsername);
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
