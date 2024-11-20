@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -120,7 +121,18 @@ public class RegisterUserController {
                 alert.setContentText("Registration Successful");
                 alert.showAndWait();
 
-            } catch (SQLException e) {
+                // Close the current stage
+                Stage currentStage = (Stage) register_btn.getScene().getWindow();
+                currentStage.close();
+
+                // Open the login stage
+                Stage primaryStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/loginUser.fxml"));
+                primaryStage.initStyle(StageStyle.UNDECORATED);
+                primaryStage.setScene(new Scene(root));
+                primaryStage.show();
+
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
