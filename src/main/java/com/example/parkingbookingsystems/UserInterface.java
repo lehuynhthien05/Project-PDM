@@ -28,6 +28,29 @@ public class UserInterface {
         this.loginUsername = loginUsername;
     }
 
+
+
+    public void openProfile()
+    {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdjustUser.fxml"));
+            Parent root = loader.load();
+
+            // Pass the username to the AdjustUserInfo controller
+            AdjustUserInfo controller = loader.getController();
+            controller.setUsername(loginUsername);
+            controller.loadUserInfo();
+
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     private void handleHBoxClick(MouseEvent event) {
         try {
@@ -74,6 +97,7 @@ public class UserInterface {
             }
         }
     }
+
 
     private Connection connect;
     private PreparedStatement prepare;
