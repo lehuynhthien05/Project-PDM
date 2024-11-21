@@ -1,0 +1,43 @@
+
+.rectangle-available: {
+    -fx-fill: #bfbfbf;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 1;
+}
+
+.rectangle-selected {
+    -fx-fill: #94e878;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 1;
+}
+
+/* Hiệu ứng hover */
+.rectangle-available:hover,
+.rectangle-selected:hover {
+    -fx-fill: #CFFDC1;
+    -fx-stroke: #94e878;
+    -fx-stroke-width: 2;
+}
+.rectangle-available:pressed{
+    -fx-fill: #008000;
+    -fx-stroke: #94e878;
+    -fx-stroke-width: 2;
+}
+.rectangle-booked:pressed{
+    -fx-fill: #FF0000;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 1;
+}
+
+.button {
+    border: 1px solid transparent;
+    background-color: #439da1;
+    color: white;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #439da1;
+}
+
