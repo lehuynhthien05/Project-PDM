@@ -1,0 +1,27 @@
+
+button#save-btn {
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+button#save-btn:hover {
+    background-color: #666;
+}
+
+
+button#save-btn:active {
+    background-color: #222;
+}
+
+
+button#save-btn.clicked {
+    background-color: #8d5d5d;
+    color: white;
+}

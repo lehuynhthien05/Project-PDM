@@ -148,7 +148,7 @@
             <VBox prefHeight="660.0" prefWidth="10.0" />
          </children>
       </VBox>
-      <VBox fx:id="content_area" prefHeight="660.0" prefWidth="850.0" stylesheets="@stylesheet.css" visible="false">
+      <VBox fx:id="contentHome" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css">
          <children>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
