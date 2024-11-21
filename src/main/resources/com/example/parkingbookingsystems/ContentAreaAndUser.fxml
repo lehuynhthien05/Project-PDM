@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,13 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="userPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/22" fx:controller="com.example.parkingbookingsystems.UserInterface"  xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="userPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.UserInterface">
    <children>
       <VBox fx:id="userbar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="252.0" styleClass="sidebar" stylesheets="@stylesheet.css">
          <children>
             <ImageView fitHeight="120.0" fitWidth="140.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../imageUser/user_icon.png" />
+                  <Image url="@../../../image/user_icon.png" />
                </image>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -123,25 +122,6 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="sendFeedback" alignment="CENTER_LEFT" layoutX="10.0" layoutY="277.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="sidebar-btn">
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <children>
-                  <FontAwesomeIcon glyphName="COMMENTS" size="1.5em" styleClass="sidebar-btn-icon" />
-                  <Label text="Feebacks" textFill="#b8b1b1">
-                     <font>
-                        <Font name="Consolas Bold" size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="17.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets top="25.0" />
-               </VBox.margin>
-            </HBox>
             <HBox fx:id="signOutUser" alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="252.0" styleClass="sidebar-btn">
                <VBox.margin>
                   <Insets top="60.0" />
@@ -168,37 +148,8 @@
             <VBox prefHeight="660.0" prefWidth="10.0" />
          </children>
       </VBox>
-      <VBox fx:id="content_area" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css">
+      <VBox fx:id="content_area" prefHeight="660.0" prefWidth="850.0" stylesheets="@stylesheet.css" visible="false">
          <children>
-            <HBox fx:id="menubar" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" style="-fx-background-color: #fff; -fx-border-color: #CCCCCC; -fx-border-width: 0px 0px 1px 0px;" stylesheets="@stylesheet.css">
-               <children>
-                  <Button fx:id="openClose" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="90.0" prefWidth="80.0" styleClass="menu-bar-btns">
-                     <graphic>
-                        <FontAwesomeIcon glyphName="TH_LIST" size="2.5em" styleClass="menu-bar-btns-icon" text="" />
-                     </graphic>
-                  </Button>
-                  <HBox fx:id="enterInfor" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-alignment: CENTER_LEFT;" styleClass="menu-bar-search-field-box" stylesheets="@stylesheet.css" HBox.hgrow="ALWAYS">
-                     <children>
-                        <FontAwesomeIcon glyphName="SEARCH" size="2.5em" styleClass="menu-bar-btns-icon" />
-                        <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="49.0" prefWidth="712.0" promptText="Search for a position, information,..." style="-fx-background-color: transparent;" styleClass="menu-bar-search-field" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Calibri" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" stylesheets="@stylesheet.css" HBox.hgrow="ALWAYS" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </HBox>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
                   <VBox alignment="CENTER_LEFT">
@@ -221,57 +172,6 @@
                         </Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Button fx:id="openInfor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="content-area-circle-btns" text="Open">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon glyphName="CIRCLE" size="1.2em" styleClass="content-area-circle-btns-icon" />
-                           </graphic>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="boookMark" layoutX="10.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon glyphName="BOOKMARK" size="1.2em" styleClass="content-area-circle-btns-icon" />
-                           </graphic>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="edit" layoutX="120.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon glyphName="EDIT" size="1.2em" styleClass="content-area-circle-btns-icon" />
-                           </graphic>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="save" layoutX="166.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="content-area-circle-btns">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon glyphName="SAVE" size="1.2em" styleClass="content-area-circle-btns-icon" />
-                           </graphic>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </HBox>
                </children>
                <VBox.margin>
                   <Insets top="-3.0" />
@@ -282,19 +182,19 @@
             </HBox>
             <AnchorPane prefHeight="508.0" prefWidth="848.0">
                <children>
-                  <AnchorPane layoutY="249.0" prefHeight="259.0" prefWidth="848.0" style="-fx-background-color: #FDF8F8;">
+                  <AnchorPane layoutY="249.0" prefHeight="309.0" prefWidth="848.0" style="-fx-background-color: #FDF8F8;">
                      <children>
-                        <Label layoutX="390.0" style="-fx-text-fill: #242222;" text="FAQ">
+                        <Label layoutX="390.0" style="-fx-text-fill: #242222;" text="FAQ" AnchorPane.topAnchor="4.0">
                            <font>
                               <Font name="Calibri Bold" size="28.0" />
                            </font>
                         </Label>
-                        <Text layoutX="105.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Got a question? We're here to answer. If you don't see your question here, drop us a line.">
+                        <Text layoutX="105.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Got a question? We're here to answer. If you don't see your question here, drop us a line." AnchorPane.topAnchor="44.25">
                            <font>
-                              <Font name="Calibri" size="17.0" />
+                              <Font name="Calibri" size="19.0" />
                            </font>
                         </Text>
-                        <AnchorPane layoutY="71.0" prefHeight="187.0" prefWidth="416.0" style="-fx-background-color: white;" styleClass="content-area-circle-btns">
+                        <AnchorPane layoutY="71.0" prefHeight="187.0" prefWidth="416.0" style="-fx-background-color: white;" styleClass="content-area-circle-btns" AnchorPane.topAnchor="93.0">
                            <children>
                               <FontAwesomeIcon fill="#b91919" glyphName="QUESTION" layoutX="194.0" layoutY="40.0" selectionFill="#433d3d" size="3em" text="" wrappingWidth="27.85714340209961" />
                               <Label layoutX="33.0" layoutY="45.0" style="-fx-text-fill: black;" text="What are the payment options for parking?">
@@ -309,7 +209,7 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="440.0" layoutY="71.0" prefHeight="187.0" prefWidth="408.0" style="-fx-background-color: white;" styleClass="content-area-circle-btns">
+                        <AnchorPane layoutX="440.0" layoutY="71.0" prefHeight="187.0" prefWidth="408.0" style="-fx-background-color: white;" styleClass="content-area-circle-btns" AnchorPane.topAnchor="92.0">
                            <children>
                               <FontAwesomeIcon fill="#b91919" glyphName="QUESTION" layoutX="176.0" layoutY="39.0" size="3em" wrappingWidth="27.85714340209961" />
                               <Label layoutX="36.0" layoutY="44.0" style="-fx-text-fill: black;" text="Can I reserve a parking spot in advance?">
@@ -324,22 +224,22 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <FontAwesomeIcon glyphName="AUTOMOBILE" layoutX="327.0" layoutY="30.0" size="3em" text="" />
+                        <FontAwesomeIcon glyphName="AUTOMOBILE" layoutX="327.0" layoutY="30.0" size="3em" text="" AnchorPane.topAnchor="3.1428565979003906" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="6.0" prefHeight="148.0" prefWidth="836.0">
                      <children>
-                        <Label prefHeight="50.0" prefWidth="470.0" style="-fx-text-fill: #4e3939;" text="DON'T LET PARKING BE A HASSLE." textFill="#4e3939">
+                        <Label prefHeight="50.0" prefWidth="470.0" style="-fx-text-fill: #4e3939;" text="DON'T LET PARKING BE A HASSLE." textFill="#4e3939" AnchorPane.topAnchor="8.0">
                            <font>
                               <Font name="Calibri Bold" size="32.0" />
                            </font>
                         </Label>
-                        <Label layoutY="51.0" style="-fx-text-fill: #4e3939;" text="RESERVE YOU SPOT TODAY!">
+                        <Label layoutY="51.0" style="-fx-text-fill: #4e3939;" text="RESERVE YOU SPOT TODAY!" AnchorPane.topAnchor="57.0">
                            <font>
                               <Font name="Calibri Bold" size="32.0" />
                            </font>
                         </Label>
-                        <FontAwesomeIcon glyphName="CUBE" layoutX="576.0" layoutY="231.0" size="12em" text="" wrappingWidth="134.4" />
+                        <FontAwesomeIcon glyphName="CUBE" layoutX="583.0" layoutY="200.0" size="12em" text="" wrappingWidth="134.4" />
                      </children>
                   </AnchorPane>
                </children>
