@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="paymentAndBill" prefHeight="660.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="paymentAndBill" prefHeight="660.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.UserInterface">
    <children>
       <Text fill="#3a4558" layoutX="145.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment">
          <font>
@@ -19,7 +19,7 @@
          </font>
       </Text>
       <Button layoutX="684.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
-      <Button fx:id="backToBooking" layoutX="5.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button fx:id="backToBooking" layoutX="5.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#ReturnBooking" style="-fx-background-color: transparent;">
          <graphic>
             <FontAwesomeIcon fx:id="returnHome" fill="#3a4558" glyphName="ARROW_LEFT" size="15" />
          </graphic>
@@ -86,12 +86,12 @@
          </font>
       </Text>
       <Text fill="#727272" layoutX="56.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please check your information carefully before submitting." />
-      <Button fx:id="confirmPayment" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 10;" text="Confirm Payment" textFill="#3a4558">
+      <Button fx:id="confirmPayment" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#PaymentCheck" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 10;" text="Confirm Payment" textFill="#3a4558">
          <font>
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="cancelPayment" layoutX="10.0" layoutY="548.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: Transparent; -fx-background-radius: 10; -fx-border-color: #b5d0ff; -fx-border-width: 2; -fx-border-radius: 10;" text="Cancel Payment" textFill="#3a4558">
+      <Button fx:id="cancelPayment" layoutX="10.0" layoutY="548.0" mnemonicParsing="false" onMouseClicked="#ReturnBooking" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: Transparent; -fx-background-radius: 10; -fx-border-color: #b5d0ff; -fx-border-width: 2; -fx-border-radius: 10;" text="Cancel Payment" textFill="#3a4558">
          <font>
             <Font name="Arial Bold" size="19.0" />
          </font>
