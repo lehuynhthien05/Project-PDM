@@ -12,8 +12,8 @@ public class Database {
 
         SQLServerDataSource ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("123");
-        ds.setServerName("LAPTOP-84HQRIOK");
+        ds.setPassword("Huynhthien123");
+        ds.setServerName("localhost");
         ds.setPortNumber(1433);
         ds.setDatabaseName("ParkingBookingSystem");
 

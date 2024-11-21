@@ -1,5 +1,4 @@
-
-.rectangle-available: {
+.rectangle-available {
     -fx-fill: #bfbfbf;
     -fx-stroke: transparent;
     -fx-stroke-width: 1;
@@ -18,12 +17,14 @@
     -fx-stroke: #94e878;
     -fx-stroke-width: 2;
 }
-.rectangle-available:pressed{
+
+.rectangle-available:pressed {
     -fx-fill: #008000;
     -fx-stroke: #94e878;
     -fx-stroke-width: 2;
 }
-.rectangle-booked:pressed{
+
+.rectangle-booked:pressed {
     -fx-fill: #FF0000;
     -fx-stroke: transparent;
     -fx-stroke-width: 1;
@@ -40,4 +41,3 @@
     color: black;
     border: 2px solid #439da1;
 }
-
