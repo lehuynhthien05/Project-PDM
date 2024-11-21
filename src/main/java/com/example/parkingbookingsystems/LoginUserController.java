@@ -92,9 +92,9 @@ public class LoginUserController {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
                                     Parent root = loader.load();
 
-                                    // Pass the username to the UserInterface controller
-//                                    UserInterface controller = loader.getController();
-//                                    controller.setLoginUsername(loginUsername);
+//                                  //Pass the username to the UserInterface controller
+                                    UserInterface controller = loader.getController();
+                                    controller.setLoginUsername(loginUsername);
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
