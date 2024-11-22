@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="parkingLotOverviewPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-border-color: #acafb5;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="lotsResearch" prefHeight="94.0" prefWidth="698.0" stylesheets="@stylesheet.css">
+         <children>
+            <Text layoutX="36.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Lots">
+               <font>
+                  <Font name="Calibri Bold" size="28.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="lotStatus" editable="true" layoutX="340.0" layoutY="33.0" prefHeight="27.0" prefWidth="102.0" promptText="Status" style="-fx-background-color: transparent; -fx-border-color: #acafb5;" />
+            <DatePicker fx:id="DateStatus" layoutX="464.0" layoutY="32.0" prefHeight="27.0" prefWidth="102.0" promptText="Date" style="-fx-background-color: #acafb5;" />
+            <Button fx:id="FindLot" layoutX="585.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="69.0" style="-fx-background-color: #b6c3d9; -fx-cursor: hand;" styleClass="find-btn" stylesheets="@stylesheet.css" text="Find" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableLots" prefHeight="566.0" prefWidth="840.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;">
+         <columns>
+            <TableColumn fx:id="Lot_ID" prefWidth="100.0" style="-fx-font-size: 15;" text="ID parking" />
+            <TableColumn fx:id="LotName" prefWidth="150.0" style="-fx-border-color: BLACK; -fx-font-size: 15;" text="Name" />
+            <TableColumn fx:id="statusSlot" prefWidth="150.0" style="-fx-font-size: 15;" text="Status" />
+            <TableColumn fx:id="LotLocation" prefWidth="150.0" style="-fx-border-color: BLACK; -fx-font-size: 15;" text="Location" />
+            <TableColumn fx:id="LotPrice" prefWidth="150.0" style="-fx-font-size: 15;" text="Price (USD)" />
+            <TableColumn fx:id="Admin_ID" prefWidth="147.0" style="-fx-border-color: BLACK; -fx-font-size: 15;" text="ID admin" />
+         </columns>
+      </TableView>
+   </children>
+</VBox>
