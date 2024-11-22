@@ -71,61 +71,56 @@
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotA2" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="99.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="A2" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="99.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="114.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A2">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotA3" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="168.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" AnchorPane.leftAnchor="166.0" />
-                  <Text fill="#5b5858" layoutX="181.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3">
-                     <font>
-                        <Font name="Calibri Bold" size="18.0" />
-                     </font>
-                  </Text>
+                  <Rectangle fx:id="A3" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="168.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" AnchorPane.leftAnchor="166.0" />
                   <Rectangle fx:id="slotA4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="85.0" layoutX="246.0" layoutY="68.0" stroke="#080808" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: black; -fx-stroke-dash-array: 5;" width="54.0" />
                   <Text fill="#5b5858" layoutX="260.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A4">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotA7" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="168.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" AnchorPane.leftAnchor="165.0" />
+                  <Rectangle fx:id="A7" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="168.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" AnchorPane.leftAnchor="165.0" />
                   <Text fill="#5b5858" layoutX="179.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A7">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotA5" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="22.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="A5" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="22.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="39.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A5">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotA6" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="100.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="A6" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="100.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="114.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A6">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotA8" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="246.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="A8" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="246.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="260.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A8">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotB1" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="438.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="B1" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="438.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="455.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B1">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotB2" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="525.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="B2" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="525.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="540.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" B2">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotB3" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="608.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="B3" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="608.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="625.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B3">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
@@ -137,14 +132,19 @@
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotB4" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="438.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="B4" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="438.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="455.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B4">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Rectangle fx:id="slotB6" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="608.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                  <Rectangle fx:id="B6" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="608.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
                   <Text fill="#5b5858" layoutX="625.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B6">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#5b5858" layoutX="180.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A3">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -169,7 +169,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Text>
-            <Text fill="#5b5858" layoutX="296.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3, A4">
+            <Text fx:id="selectedSlotName" fill="#5b5858" layoutX="296.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3, A4">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -179,7 +179,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="totalSlot" fill="#5b5858" layoutX="447.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+            <Text fx:id="totalSlot" fill="#5b5858" layoutX="447.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -189,7 +189,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="totalAmout" fill="#5b5858" layoutX="581.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$200">
+            <Text fill="#5b5858" layoutX="581.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -199,6 +199,11 @@
                   <Font name="Calibri Bold" size="20.0" />
                </font>
             </Button>
+            <Text fx:id="totalAmount" fill="#5b5858" layoutX="596.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Text>
          </children>
          <VBox.margin>
             <Insets top="40.0" />

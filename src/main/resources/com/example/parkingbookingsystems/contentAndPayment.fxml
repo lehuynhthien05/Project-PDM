@@ -86,7 +86,7 @@
          </font>
       </Text>
       <Text fill="#727272" layoutX="56.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please check your information carefully before submitting." />
-      <Button fx:id="confirmPayment" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#PaymentCheck" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 10;" text="Confirm Payment" textFill="#3a4558">
+      <Button fx:id="confirmPayment" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" onAction="#PaymentCheck" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 10;" text="Confirm Payment" textFill="#3a4558">
          <font>
             <Font name="Arial Bold" size="19.0" />
          </font>
@@ -119,19 +119,39 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="priceOrder" fill="WHITE" layoutX="198.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100000">
+            <Text fx:id="priceOrder" fill="WHITE" layoutX="195.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="totalSlot" fill="WHITE" layoutX="213.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+            <Text fx:id="totalSlot_Payment" fill="WHITE" layoutX="213.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="totalOder" fill="WHITE" layoutX="199.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 950" wrappingWidth="77.0478515625">
+            <Text fx:id="totalOder" fill="WHITE" layoutX="195.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ " wrappingWidth="17.0">
                <font>
                   <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="priceOrder1" fill="WHITE" layoutX="219.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="totalOrder" fill="WHITE" layoutX="212.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="21.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slot">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="selectedSlotName" fill="WHITE" layoutX="191.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3, A4">
+               <font>
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Text>
          </children>

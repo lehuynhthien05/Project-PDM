@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="194.0" fitWidth="194.0" layoutX="78.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../imageUser/car.png" />
+                  <Image url="@../../../image/car.png" />
                </image>
             </ImageView>
             <Text fill="#fffafa" layoutX="29.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PARKING BOOKING">
@@ -53,7 +53,7 @@
             </Button>
             <ImageView fitHeight="89.0" fitWidth="89.0" layoutX="130.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../imageUser/account.png" />
+                  <Image url="@../../../image/account.png" />
                </image>
             </ImageView>
 
