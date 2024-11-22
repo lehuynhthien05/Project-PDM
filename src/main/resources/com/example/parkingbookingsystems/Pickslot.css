@@ -41,3 +41,19 @@
     color: black;
     border: 2px solid #439da1;
 }
+
+.rectangle-available {
+    -fx-fill: #bfbfbf; /* Gray color */
+    -fx-stroke: transparent;
+    -fx-stroke-width: 1;
+}
+
+.rectangle-selected {
+    -fx-fill: #94e878; /* Green color */
+    -fx-stroke: transparent;
+    -fx-stroke-width: 1;
+}
+
+.rectangle-booked {
+    -fx-fill: red;
+}
