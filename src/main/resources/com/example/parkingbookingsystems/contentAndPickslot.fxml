@@ -155,10 +155,10 @@
       </AnchorPane>
       <AnchorPane fx:id="bookingDetails" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;">
          <children>
-            <DatePicker fx:id="entryDate" layoutX="36.0" layoutY="20.0" prefHeight="24.0" prefWidth="107.0" promptText="Entry Date" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
-            <DatePicker fx:id="existDate" layoutX="391.0" layoutY="21.0" prefHeight="24.0" prefWidth="107.0" promptText="Exist Date" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+            <DatePicker fx:id="bookingDate" layoutX="36.0" layoutY="20.0" onAction="#onCheckDateButtonClick" prefHeight="24.0" prefWidth="107.0" promptText="Entry Date" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+            <DatePicker fx:id="endTime" layoutX="391.0" layoutY="21.0" onAction="#onCheckDateButtonClickEndTime" prefHeight="24.0" prefWidth="107.0" promptText="Exist Date" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
             <ComboBox fx:id="entryTime" editable="true" layoutX="207.0" layoutY="21.0" prefHeight="27.0" prefWidth="150.0" promptText="Entry Time(Ex: 6:30)" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
-            <ComboBox fx:id="existTime" editable="true" layoutX="532.0" layoutY="21.0" prefHeight="27.0" prefWidth="150.0" promptText="Exist Time(Ex: 18:30)" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+            <ComboBox fx:id="exitTime" editable="true" layoutX="532.0" layoutY="21.0" prefHeight="27.0" prefWidth="150.0" promptText="Exist Time(Ex: 18:30)" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
             <Text layoutX="36.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOKING DETAILS: ">
                <font>
                   <Font name="Calibri Bold" size="20.0" />
