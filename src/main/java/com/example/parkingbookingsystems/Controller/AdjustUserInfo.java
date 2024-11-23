@@ -6,9 +6,7 @@ import com.example.parkingbookingsystems.email.EmailUtils;
 import com.example.parkingbookingsystems.phone.PhoneUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,14 +25,7 @@ public class AdjustUserInfo {
     private TextField user_phone;
     @FXML
     private TextField user_username;
-    @FXML
-    private Button close;
-    @FXML
-    private Button save_btn;
 
-    public void setUsername(String user_name) {
-        this.loginUsername = user_name;
-    }
 
     public void close(ActionEvent event) {
         // Get the current stage (window) and close it

@@ -30,9 +30,6 @@ public class LoginController {
     private PasswordField password;
 
     @FXML
-    private Button close;
-
-    @FXML
     private Button register_btn;
 
     @FXML
@@ -46,7 +43,6 @@ public class LoginController {
         System.exit(0);
     }
 
-    private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
     private double x = 0;

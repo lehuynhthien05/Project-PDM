@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -14,28 +13,13 @@ import java.io.IOException;
 
 public class ParkingController {
     @FXML
-    private DatePicker DateStatus;
-
-    @FXML
-    private Button FindLot;
-
-    @FXML
     private TableColumn<Parking, String> adminIdColumn;
-
-    @FXML
-    private ComboBox<?> lotStatus;
-
-    @FXML
-    private AnchorPane lotsResearch;
 
     @FXML
     private TableColumn<Parking, String> parkingIdColumn;
 
     @FXML
     private TableColumn<Parking, String> parkingLocationColumn;
-
-    @FXML
-    private VBox parkingLotOverviewPage;
 
     @FXML
     private TableColumn<Parking, String> parkingNameColumn;

@@ -8,8 +8,6 @@ public class ParkingSession {
     }
 
     public static String extractParkingAreaId(String slotName) {
-        // Implement logic to extract parking area ID from slot name
-        // This is a dummy implementation, replace it with actual logic
         return slotName.substring(0, 2);
     }
 

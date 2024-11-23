@@ -7,9 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -18,9 +16,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class AdminController {
-
-    @FXML
-    private Button AdminName;
 
     @FXML
     private Label adminEmail;
@@ -38,40 +33,13 @@ public class AdminController {
     private HBox adminProfile;
 
     @FXML
-    private HBox user;
-
-    @FXML
     private Button returnHome;
 
     @FXML
     private HBox analytic;
 
     @FXML
-    private TextField firstNameAdmin;
-
-    @FXML
-    private TextField lastNameAdmin;
-
-    @FXML
-    private HBox mainPageAdmin;
-
-    @FXML
     private HBox overview;
-
-    @FXML
-    private TextField passwordAdmin;
-
-    @FXML
-    private AnchorPane profileArea;
-
-    @FXML
-    private Button saveInfor;
-
-    @FXML
-    private VBox sidebar;
-
-    @FXML
-    private HBox signOutAdmin;
 
     private String email;
     private String firstName;
