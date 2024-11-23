@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.Controller;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 

@@ -14,9 +14,12 @@ module com.example.parkingbookingsystems {
     requires mssql.jdbc;
     requires transitive mysql.connector.j;
     requires transitive fontawesomefx;
+    requires java.desktop;
 
     opens com.example.parkingbookingsystems to javafx.fxml;
     exports com.example.parkingbookingsystems;
     exports com.example.parkingbookingsystems.ResetPassword;
     opens com.example.parkingbookingsystems.ResetPassword to javafx.fxml;
+    exports com.example.parkingbookingsystems.Controller;
+    opens com.example.parkingbookingsystems.Controller to javafx.fxml;
 }
