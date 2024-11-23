@@ -1,5 +1,6 @@
 package com.example.parkingbookingsystems;
 
+import com.example.parkingbookingsystems.SlotFileUtil.SlotFileUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        SlotFileUtil.clearSelectedSlotsFile();
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/parkingbookingsystems/Choose.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);

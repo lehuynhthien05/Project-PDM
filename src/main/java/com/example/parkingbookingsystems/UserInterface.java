@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -120,42 +123,49 @@ public class UserInterface {
     @FXML
     private Text totalAmount;
 
-    //select slot
-    @FXML
-    private void selectParkingSlot(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        String slotName = source.getId();
-
-        System.out.println("Clicked slot: " + slotName);
-
-        if (source.getStyleClass().contains("rectangle-selected")) {
-            source.getStyleClass().remove("rectangle-selected");
-            source.getStyleClass().add("rectangle-available");
-            selectedSlots.remove(slotName);
-        } else {
-            if (selectedSlots.size() >= 1) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Selection Limit Exceeded");
-                alert.setHeaderText(null);
-                alert.setContentText("You can only select 1 slot");
-                alert.showAndWait();
-                return;
-            }
-            source.getStyleClass().remove("rectangle-available");
-            source.getStyleClass().add("rectangle-selected");
-            selectedSlots.add(slotName);
-        }
-
-        System.out.println("Selected slots: " + selectedSlots);
-
-        // Update selected slot name and total slot count
+    // Method to refresh slotName and totalSlots
+    private void refreshSlotInfo() {
+        // Update selected slot name
         selectedSlotName.setText(String.join(", ", selectedSlots));
+
+        // Update total slot count
         totalSlot.setText(String.valueOf(selectedSlots.size()));
 
         // Calculate total money
         int total = selectedSlots.size() * 100;
         totalAmount.setText(String.valueOf(total));
     }
+
+    // Select slot
+    @FXML
+    private void selectParkingSlot(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        String slotName = source.getId();
+
+        if (selectedSlots.contains(slotName)) {
+            // Deselect the slot
+            selectedSlots.remove(slotName);
+            source.getStyleClass().remove("rectangle-selected");
+            source.getStyleClass().add("rectangle-available");
+        } else {
+            if (selectedSlots.size() < 2) {
+                // Select the slot
+                selectedSlots.add(slotName);
+                source.getStyleClass().remove("rectangle-available");
+                source.getStyleClass().add("rectangle-selected");
+            } else {
+                // Show alert if more than 2 slots are selected
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Selection Limit");
+                alert.setHeaderText(null);
+                alert.setContentText("You can only select up to 2 slots.");
+                alert.showAndWait();
+            }
+        }
+
+        refreshSlotInfo();
+    }
+
     @FXML
     private Text priceOrder;
 
@@ -173,7 +183,7 @@ public class UserInterface {
         if (totalSlot_Payment != null) {
             totalSlot_Payment.setText(String.valueOf(selectedSlots.size()));
         } else {
-            System.err.println("totalSlot_Payment is null");
+            System.out.println();
         }
     }
 
@@ -192,7 +202,18 @@ public class UserInterface {
         selectedSlotName.setText(String.join(", ", selectedSlots));
     }
 
+    private void writeSelectedSlotsToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("selectedSlots.txt", true))) {
+            for (String slot : selectedSlots) {
+                writer.write(slot);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    // Booked button action
     public void BookedBtn(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Booking");
@@ -209,11 +230,18 @@ public class UserInterface {
                 // Get the controller of the payment interface
                 UserInterface paymentController = loader.getController();
                 paymentController.setSelectedSlots(selectedSlots);
-                paymentController.setTotalPrice(totalPrice);
+                paymentController.setTotalPrice(100); // Set total price to 100
                 paymentController.updateSelectedSlotName();
 
                 // Update the style of selected slots
                 updateSelectedSlotsStyle();
+
+                // Write selected slots to file
+                writeSelectedSlotsToFile();
+
+                // Clear the selected slots and update the UI
+                selectedSlots.clear();
+                refreshSlotInfo();
 
                 // Close the current stage
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
