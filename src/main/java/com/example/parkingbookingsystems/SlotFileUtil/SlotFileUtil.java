@@ -33,4 +33,13 @@ public class SlotFileUtil {
         }
         return selectedSlots;
     }
+
+    public static void clearSelectedSlotsFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("selectedSlots.txt"))) {
+            // Writing an empty string to clear the file
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
