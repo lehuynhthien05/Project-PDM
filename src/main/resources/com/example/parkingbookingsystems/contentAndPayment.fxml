@@ -26,7 +26,7 @@
       </Button>
       <AnchorPane fx:id="payment" layoutX="19.0" layoutY="73.0" prefHeight="357.0" prefWidth="361.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 20;">
          <children>
-            <ComboBox fx:id="paymentMethod" layoutX="14.0" layoutY="34.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+            <ComboBox fx:id="paymentMethod" layoutX="14.0" layoutY="34.0" onAction="#initialize" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
             <Text fill="WHITE" layoutX="17.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Method">
                <font>
                   <Font name="Arial Bold" size="14.0" />

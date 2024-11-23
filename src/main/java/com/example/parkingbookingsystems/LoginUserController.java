@@ -9,14 +9,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class LoginUserController {
 
@@ -41,20 +39,50 @@ public class LoginUserController {
     @FXML
     private Button registerBtn;
 
-
-
-
     @FXML
-    public void close(ActionEvent event) {
-        System.exit(0);
-    }
-
+    private Text usernameDisplay;
 
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
     private double x = 0;
     private double y = 0;
+
+    private String firstName;
+    private String lastName;
+    private int currentUserId;
+
+    public void close(){
+        System.exit(0);
+    }
+
+
+    private int getUserIdFromDatabase(String username, String password) {
+        String sql = "SELECT user_id FROM [User] WHERE username = ? AND password = ?";
+        int userId = -1; // Default value if user is not found
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ParkingBookingSystem", "sa", "Huynhthien123");
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    userId = rs.getInt("user_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userId;
+    }
+
+
+    public int getCurrentUserId() {
+        return this.currentUserId;
+    }
 
 
 
@@ -72,15 +100,18 @@ public class LoginUserController {
                 result = prepare.executeQuery();
 
                 if (username.getText().isEmpty() || password.getText().isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Please fill in all fields");
-                    alert.showAndWait();
+                    showError("Please fill in all fields");
                 } else {
                     if (result.next()) {
                         String hashed = result.getString("password");
-                        String loginUsername = username.getText();
                         if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
+                            int userId = result.getInt("user_id");
+                            this.currentUserId = userId;
+
+                            // Set the first name and last name based on the user_id
+                            this.firstName = result.getString("firstName");
+                            this.lastName = result.getString("lastName");
+
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setContentText("Login successful");
@@ -92,9 +123,13 @@ public class LoginUserController {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
                                     Parent root = loader.load();
 
-//                                  //Pass the username to the UserInterface controller
                                     UserInterface controller = loader.getController();
-                                    controller.setLoginUsername(loginUsername);
+                                    UserSession.setCurrentUserId(userId);
+
+                                    // Set the username display in the new controller
+                                    controller.setFirstName(this.firstName);
+                                    controller.setLastName(this.lastName);
+                                    controller.setUsernameDisplay();
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
@@ -117,23 +152,14 @@ public class LoginUserController {
                                 }
                             });
                         } else {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setHeaderText(null);
-                            alert.setContentText("Invalid username or password");
-                            alert.showAndWait();
+                            showError("Invalid username or password");
                         }
                     } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Invalid username or password");
-                        alert.showAndWait();
+                        showError("Invalid username or password");
                     }
                 }
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setContentText("Database connection failed");
-                alert.showAndWait();
+                showError("Database connection failed");
             }
         } catch (SQLException e) {
             e.printStackTrace();

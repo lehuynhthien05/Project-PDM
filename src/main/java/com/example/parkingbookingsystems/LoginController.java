@@ -82,7 +82,7 @@ public class LoginController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndAdmin.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();

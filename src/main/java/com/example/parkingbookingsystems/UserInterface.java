@@ -7,9 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -18,18 +16,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import com.example.parkingbookingsystems.BookingSession;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.*;
 
 public class UserInterface {
     private String loginUsername;
@@ -59,8 +54,27 @@ public class UserInterface {
         this.loginUsername = loginUsername;
     }
 
+    @FXML
+    private Text usernameDisplay;
 
+    public void setUsernameDisplay(String username) {
+        usernameDisplay.setText(username);
+    }
 
+    private String firstName;
+    private String lastName;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUsernameDisplay(String lastName, String firstName) {
+        usernameDisplay.setText(lastName + " " + firstName);
+    }
 
 
     public void UserProfile() {
@@ -105,8 +119,8 @@ public class UserInterface {
             // Open the booking stage
             Stage primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPickslot.fxml"));
-            Parent root = loader.load();
 
+            Parent root = loader.load();
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -134,6 +148,46 @@ public class UserInterface {
         // Calculate total money
         int total = selectedSlots.size() * 100;
         totalAmount.setText(String.valueOf(total));
+
+        handleTotalCost(total);
+    }
+
+
+    @FXML
+    private DatePicker bookingDate;
+
+    @FXML
+    private void handleDateSelection() {
+        LocalDate selectedDate = bookingDate.getValue();
+        if (selectedDate != null) {
+            DateSession.setSelectedDate(selectedDate.toString());
+        } else {
+            System.out.println("No date selected");
+        }
+    }
+
+    @FXML
+    private void onCheckDateButtonClick() {
+        handleDateSelection();
+    }
+
+    @FXML
+    private DatePicker endTime;
+
+    @FXML
+    private void handleDateSelectionExit() {
+        LocalDate selectedDate = endTime
+                .getValue();
+        if (selectedDate != null) {
+            DateEndSession.setSelectedDate(selectedDate.toString());
+        } else {
+            System.out.println("No date selected");
+        }
+    }
+
+    @FXML
+    private void onCheckDateButtonClickEndTime() {
+        handleDateSelectionExit();
     }
 
     // Select slot
@@ -147,24 +201,35 @@ public class UserInterface {
             selectedSlots.remove(slotName);
             source.getStyleClass().remove("rectangle-selected");
             source.getStyleClass().add("rectangle-available");
+            totalPrice -= 100; // Subtract 100 from total cost
         } else {
-            if (selectedSlots.size() < 2) {
+            if (selectedSlots.size() < 1) {
                 // Select the slot
                 selectedSlots.add(slotName);
                 source.getStyleClass().remove("rectangle-available");
                 source.getStyleClass().add("rectangle-selected");
+                totalPrice += 100; // Add 100 to total cost
+
+                // Store the parking area ID
+                ParkingSession.setParkingAreaId(slotName);
             } else {
                 // Show alert if more than 2 slots are selected
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Selection Limit");
                 alert.setHeaderText(null);
-                alert.setContentText("You can only select up to 2 slots.");
+                alert.setContentText("You can only select 1 slot.");
                 alert.showAndWait();
             }
         }
-
         refreshSlotInfo();
     }
+
+
+
+    public void setUsernameDisplay() {
+        usernameDisplay.setText(lastName + " " + firstName);
+    }
+
 
     @FXML
     private Text priceOrder;
@@ -213,7 +278,86 @@ public class UserInterface {
         }
     }
 
-    // Booked button action
+
+
+    public int getTotalCost() {
+        if (totalAmount == null || totalAmount.getText().isEmpty()) {
+            return 0; // Default value if totalAmount is not set or empty
+        } else {
+            String text = totalAmount.getText();
+            if (text.matches("-?\\d+(\\.\\d+)?")) { // Check if the text is a valid number
+                return Integer.parseInt(text);
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    @FXML
+    private void handleTotalCost(int totalAmount) {
+        if (totalAmount != 0) {
+            PriceSession.setTotalCost(getTotalCost());
+        } else {
+            System.out.println();
+        }
+    }
+
+    public String getStatus() {
+        return "Booked";
+    }
+
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+
+    private void executeSQLCommandBooking() {
+        String sql = "INSERT INTO [Booking] (user_id, parkingArea_id, startTime, endTime, totalCost, status) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = Database.connectdb();
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setInt(1, UserSession.getCurrentUserId());
+            pstmt.setString(2, ParkingSession.getParkingAreaId());
+            pstmt.setString(3, DateSession.getSelectedDate());
+            pstmt.setString(4, DateEndSession.getSelectedDate());
+            pstmt.setFloat(5, PriceSession.getTotalCost());
+            pstmt.setString(6, getStatus());
+
+            pstmt.executeUpdate(); // Execute the statement first
+
+            // Retrieve the generated keys
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int bookingId = generatedKeys.getInt(1);
+                    BookingSession.setBookingId(bookingId);
+                } else {
+                    throw new SQLException("Creating booking failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void executeSQLCommandPayment() {
+        String sql = "INSERT INTO [Payment] (booking_id, amount, paymentDate, paymentMethod, status) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = Database.connectdb();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, BookingSession.getBookingId());
+            pstmt.setFloat(2, PriceSession.getTotalCost());
+            pstmt.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
+            pstmt.setString(4, getSelectedPaymentMethod());
+            pstmt.setString(5, "Completed");
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+        // Booked button action
     public void BookedBtn(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Booking");
@@ -223,6 +367,9 @@ public class UserInterface {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
+                // Execute the SQL command
+                executeSQLCommandBooking();
+
                 Stage primaryStage = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPayment.fxml"));
                 Parent root = loader.load();
@@ -293,7 +440,34 @@ public class UserInterface {
         }
     }
 
-    public void PaymentCheck() {
+    @FXML
+    private ComboBox<String> paymentMethod;
+
+    private boolean isPaymentMethodInitialized = false;
+
+    @FXML
+    public void initialize() {
+        if (!isPaymentMethodInitialized) {
+            if (paymentMethod != null) {
+                paymentMethod.getItems().addAll("Credit", "Visa", "ATM");
+                paymentMethod.setValue("Credit"); // Set default value
+                isPaymentMethodInitialized = true; // Mark as initialized
+            } else {
+                System.out.println();
+            }
+        }
+    }
+
+    private String getSelectedPaymentMethod() {
+        return paymentMethod.getValue();
+    }
+
+    private int generateRandomBookingId() {
+        Random random = new Random();
+        return random.nextInt(100); // Generate a random number between 0 and 999999
+    }
+
+    public void PaymentCheck() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Payment");
         alert.setHeaderText(null);
@@ -301,20 +475,38 @@ public class UserInterface {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
+            // Ensure all necessary values are set before executing the SQL command
+            if (UserSession.getCurrentUserId() != -1 && !ParkingSession.getParkingAreaId().equals("-1") && DateSession.getSelectedDate() != null && DateEndSession.getSelectedDate() != null && PriceSession.getTotalCost() > 0) {
+                executeSQLCommandPayment();
+                // Show success message
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Payment Successful");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Your payment has been processed successfully.");
+                successAlert.showAndWait();
+
+                // Open the booking stage
+
                 Stage primaryStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/PaymentCheck .fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/paymentCheck .fxml"));
                 Parent root = loader.load();
 
                 primaryStage.initStyle(StageStyle.UNDECORATED);
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                // Show error message if any value is missing
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Payment Error");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("An error occurred while processing your payment. Please try again.");
+                errorAlert.showAndWait();
             }
         }
     }
+
+
+
     @FXML
     private VBox pickSlot;
 
@@ -359,15 +551,27 @@ public class UserInterface {
         }
     }
 
+    private void deleteLatestBooking() {
+        String sql = "DELETE FROM Booking WHERE booking_id = (SELECT MAX(booking_id) FROM Booking)";
+
+        try (Connection conn = Database.connectdb();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void ReturnBooking() {
         try {
             Stage contentAreaStage = (Stage) backToBooking.getScene().getWindow();
             contentAreaStage.hide();
 
+            deleteLatestBooking();
+
             Stage primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPickslot.fxml"));
             Parent root = loader.load();
-
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));
@@ -409,9 +613,6 @@ public class UserInterface {
     }
 
 
-    private Connection connect;
-    private PreparedStatement prepare;
-    private ResultSet result;
 
 
 
