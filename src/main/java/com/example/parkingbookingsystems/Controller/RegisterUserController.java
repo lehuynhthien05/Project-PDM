@@ -47,9 +47,6 @@ public class RegisterUserController {
     private Button register_btn;
 
     @FXML
-    private Button close;
-
-    @FXML
     private Hyperlink loginbtn;
 
     public void close(){

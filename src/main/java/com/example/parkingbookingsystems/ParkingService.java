@@ -1,6 +1,5 @@
 package com.example.parkingbookingsystems;
 
-import com.example.parkingbookingsystems.Controller.BookingUser;
 import com.example.parkingbookingsystems.Controller.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

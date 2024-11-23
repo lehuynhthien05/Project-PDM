@@ -8,8 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -18,14 +16,9 @@ import java.sql.*;
 
 public class LoginUserController {
 
-    @FXML
-    private Button close;
 
     @FXML
     private Button loginBtn;
-
-    @FXML
-    private AnchorPane main_form;
 
     @FXML
     private PasswordField password;
@@ -39,8 +32,6 @@ public class LoginUserController {
     @FXML
     private Button registerBtn;
 
-    @FXML
-    private Text usernameDisplay;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -80,9 +71,6 @@ public class LoginUserController {
     }
 
 
-    public int getCurrentUserId() {
-        return this.currentUserId;
-    }
 
 
 

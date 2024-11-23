@@ -12,51 +12,17 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class StatisticsController {
-
-    @FXML
-    private ImageView adminImage;
-
-    @FXML
-    private AnchorPane analyticsBar;
-
     @FXML
     private BarChart<String, Number> barChart;
 
     @FXML
-    private AnchorPane earningTrend;
-
-    @FXML
-    private Label greetAdmin;
-
-    @FXML
-    private HBox headerAnalytic;
-
-    @FXML
-    private Label nameAdmin;
-
-    @FXML
-    private AnchorPane orderTrend;
-
-    @FXML
     private Button returnHome;
-
-    @FXML
-    private Label revenueEarning;
-
-    @FXML
-    private Label revenueOrders;
-
-    @FXML
-    private Label revenueUsers;
 
     @FXML
     private Label totalEarning;
@@ -66,12 +32,6 @@ public class StatisticsController {
 
     @FXML
     private Label totalUsers;
-
-    @FXML
-    private HBox trend;
-
-    @FXML
-    private AnchorPane userTrend;
 
     @FXML
     private CategoryAxis xAxis;

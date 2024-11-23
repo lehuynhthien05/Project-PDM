@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javafx.scene.control.Button;
 
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
@@ -43,20 +42,11 @@ public class RegisterAdminController {
     private TextField register_username;
 
     @FXML
-    private Button register_btn;
-
-    @FXML
-    private Button close;
-
-    @FXML
     private Hyperlink loginbtn;
 
     public void close(){
         System.exit(0);
     }
-
-    private double x = 0;
-    private double y = 0;
 
     private Connection connect;
     private PreparedStatement prepare;
