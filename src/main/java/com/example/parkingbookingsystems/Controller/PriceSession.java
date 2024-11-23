@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.Controller;
 
 public class PriceSession {
     private static float totalCost;

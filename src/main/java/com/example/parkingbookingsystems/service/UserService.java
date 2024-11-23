@@ -1,6 +1,6 @@
 package com.example.parkingbookingsystems.service;
 
-import com.example.parkingbookingsystems.Database;
+import com.example.parkingbookingsystems.Controller.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

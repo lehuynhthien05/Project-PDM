@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

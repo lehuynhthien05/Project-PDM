@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="pickSlot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@Pickslot.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.UserInterface">
+<VBox fx:id="pickSlot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@Pickslot.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.Controller.UserInterface">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;" stylesheets="@Pickslot.css">
          <children>
