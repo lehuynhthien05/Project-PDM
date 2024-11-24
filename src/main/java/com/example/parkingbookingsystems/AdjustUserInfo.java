@@ -1,4 +1,5 @@
 package com.example.parkingbookingsystems;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
@@ -18,19 +19,19 @@ public class AdjustUserInfo {
     private String loginUsername;
 
     @FXML
-    private TextField user_email;
+    private Label userEmail;
     @FXML
-    private TextField user_firstname;
+    private TextField firstNameUser;
     @FXML
-    private TextField user_lastname;
+    private TextField lastNameUser;
     @FXML
-    private TextField user_phone;
+    private Label userPhone;
     @FXML
-    private TextField user_username;
+    private Label userName;
     @FXML
     private Button close;
     @FXML
-    private Button save_btn;
+    private Button saveInfor;
 
     public void setUsername(String user_name) {
         this.loginUsername = user_name;
@@ -58,11 +59,11 @@ public class AdjustUserInfo {
 
             try (ResultSet result = prepare.executeQuery()) {
                 if (result.next()) {
-                    user_username.setText(result.getString("username"));
-                    user_firstname.setText(result.getString("firstName"));
-                    user_lastname.setText(result.getString("lastName"));
-                    user_email.setText(result.getString("email"));
-                    user_phone.setText(result.getString("phoneNumber"));
+                    userName.setText(result.getString("username"));
+                    firstNameUser.setText(result.getString("firstName"));
+                    lastNameUser.setText(result.getString("lastName"));
+                    userEmail.setText(result.getString("email"));
+                    userPhone.setText(result.getString("phoneNumber"));
                 } else {
                     System.out.println("No user found.");
                 }
@@ -79,11 +80,11 @@ public class AdjustUserInfo {
         try (Connection connect = Database.connectdb();
              PreparedStatement prepare = connect.prepareStatement(sql)) {
 
-            prepare.setString(1, user_username.getText());
-            prepare.setString(2, user_firstname.getText());
-            prepare.setString(3, user_lastname.getText());
-            prepare.setString(4, user_email.getText());
-            prepare.setString(5, user_phone.getText());
+            prepare.setString(1, userName.getText());
+            prepare.setString(2, firstNameUser.getText());
+            prepare.setString(3, lastNameUser.getText());
+            prepare.setString(4, userEmail.getText());
+            prepare.setString(5, userPhone.getText());
             prepare.setString(6, this.loginUsername);
 
             int rowsAffected = prepare.executeUpdate();
@@ -100,15 +101,15 @@ public class AdjustUserInfo {
     }
 
     private boolean validateInput() {
-        if (user_email.getText().isEmpty() || user_username.getText().isEmpty()) {
+        if (userEmail.getText().isEmpty() || userName.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Please fill all the fields");
             return false;
         }
-        if (!EmailUtils.isValidEmail(user_email.getText())) {
+        if (!EmailUtils.isValidEmail(userEmail.getText())) {
             showAlert(Alert.AlertType.ERROR, "Please enter a valid email address");
             return false;
         }
-        if (!PhoneUtils.isValidPhoneNumber(user_phone.getText())) {
+        if (!PhoneUtils.isValidPhoneNumber(userPhone.getText())) {
             showAlert(Alert.AlertType.ERROR, "Please enter a valid 10-digit phone number");
             return false;
         }

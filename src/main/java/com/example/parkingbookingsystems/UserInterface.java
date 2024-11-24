@@ -63,6 +63,7 @@ public class UserInterface {
 
     private String firstName;
     private String lastName;
+    private Stage homeStage;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -72,16 +73,43 @@ public class UserInterface {
         this.lastName = lastName;
     }
 
-    public void setUsernameDisplay(String lastName, String firstName) {
-        usernameDisplay.setText(lastName + " " + firstName);
+    public void setUsernameDisplay() {
+        String sql = "SELECT * FROM [User] WHERE username = ?";
+        try (Connection connect = Database.connectdb();
+             PreparedStatement prepare = connect.prepareStatement(sql)) {
+
+            prepare.setString(1, this.loginUsername);
+
+            try (ResultSet result = prepare.executeQuery()) {
+                if (result.next()) {
+                    firstName = result.getString("firstName");
+                    lastName = result.getString("lastName");
+                    usernameDisplay.setText(lastName + " " + firstName);
+
+                } else {
+                    System.out.println("No user found.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void UserProfile() {
         try {
+
+
+
             Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdjustUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndUserProfile.fxml"));
             Parent root = loader.load();
+
+
+            // Pass the username to the AdjustUserInfo controller
+            AdjustUserInfo controller = loader.getController();
+            controller.setUsername(loginUsername);
+            controller.loadUserInfo();
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));
@@ -93,8 +121,9 @@ public class UserInterface {
 
     public void Home() {
         try {
-            Stage contentAreaStage = (Stage) home.getScene().getWindow();
-            contentAreaStage.hide();
+            homeStage = (Stage) home.getScene().getWindow();
+            homeStage.hide();
+
 
             Stage primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
@@ -226,9 +255,9 @@ public class UserInterface {
 
 
 
-    public void setUsernameDisplay() {
-        usernameDisplay.setText(lastName + " " + firstName);
-    }
+//    public void setUsernameDisplay() {
+//        usernameDisplay.setText(lastName + " " + firstName);
+//    }
 
 
     @FXML
@@ -411,6 +440,12 @@ public class UserInterface {
             Stage primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
             Parent root = loader.load();
+
+            UserInterface controller = loader.getController();
+
+            // Set the username display in the new controller
+            controller.setLoginUsername(this.loginUsername);
+            controller.setUsernameDisplay();
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));

@@ -48,8 +48,8 @@ public class LoginUserController {
     private double x = 0;
     private double y = 0;
 
-    private String firstName;
-    private String lastName;
+//    private String firstName;
+//    private String lastName;
     private int currentUserId;
 
     public void close(){
@@ -105,12 +105,15 @@ public class LoginUserController {
                     if (result.next()) {
                         String hashed = result.getString("password");
                         if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
+
                             int userId = result.getInt("user_id");
                             this.currentUserId = userId;
+//
+//                            // Set the first name and last name based on the user_id
+//                            this.firstName = result.getString("firstName");
+//                            this.lastName = result.getString("lastName");
 
-                            // Set the first name and last name based on the user_id
-                            this.firstName = result.getString("firstName");
-                            this.lastName = result.getString("lastName");
+                            String loginUsername = result.getString("username");
 
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
@@ -126,10 +129,11 @@ public class LoginUserController {
                                     UserInterface controller = loader.getController();
                                     UserSession.setCurrentUserId(userId);
 
-                                    // Set the username display in the new controller
-                                    controller.setFirstName(this.firstName);
-                                    controller.setLastName(this.lastName);
+                                    //Pass the username to the UserInterface controller
+                                    controller.setLoginUsername(loginUsername);
+
                                     controller.setUsernameDisplay();
+
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
