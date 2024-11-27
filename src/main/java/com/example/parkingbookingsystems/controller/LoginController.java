@@ -1,5 +1,6 @@
 package com.example.parkingbookingsystems.controller;
 
+import com.example.parkingbookingsystems.Database;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +57,7 @@ public class LoginController {
         String sql = "SELECT * FROM admin WHERE username = ?";
 
         Database db = new Database();
+
         connect = db.connectdb();
 
         try {
