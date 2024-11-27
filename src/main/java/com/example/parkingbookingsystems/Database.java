@@ -12,11 +12,10 @@ public class Database {
 
         SQLServerDataSource ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("Huynhthien123");
-        ds.setServerName("localhost");
+        ds.setPassword("123");
+        ds.setServerName("LAPTOP-84HQRIOK");
         ds.setPortNumber(1433);
         ds.setDatabaseName("ParkingBookingSystem");
-
 
         ds.setTrustServerCertificate(true);
         try {

@@ -2,16 +2,24 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="userPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.UserInterface">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.UserInterface">
    <children>
       <VBox fx:id="userbar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="252.0" styleClass="sidebar" stylesheets="@stylesheet.css">
          <children>
@@ -23,11 +31,14 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </ImageView>
-            <Text fx:id="usernameDisplay" fill="#bfbfbf" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <Button fx:id="nameUser" contentDisplay="RIGHT" mnemonicParsing="false" styleClass="sidebar-user-btn" stylesheets="@stylesheet.css" text="What's your name?">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Calibri" size="15.0" />
                </font>
-            </Text>
+               <graphic>
+                  <FontAwesomeIcon glyphName="SORT_DESC" glyphStyle="-fx-fill:#b8b1b1" size="1.4em" />
+               </graphic>
+            </Button>
             <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Main" textFill="#b8b1b1">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
@@ -58,7 +69,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="Booking" alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Booking" prefHeight="35.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn" stylesheets="@stylesheet.css">
+            <HBox fx:id="Booking" alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Booking" prefHeight="35.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -144,7 +155,7 @@
             <VBox prefHeight="660.0" prefWidth="10.0" />
          </children>
       </VBox>
-      <VBox fx:id="contentHome" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css">
+      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css" visible="false">
          <children>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
@@ -242,5 +253,500 @@
             </AnchorPane>
          </children>
       </VBox>
+      <VBox fx:id="pickSlot" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@Pickslot.css" visible="false">
+         <children>
+            <AnchorPane prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;" stylesheets="@Pickslot.css">
+               <children>
+                  <Text layoutX="23.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOK YOUR SLOT">
+                     <font>
+                        <Font name="Calibri Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <FontAwesomeIcon fill="GREEN" glyphName="CAR" layoutX="272.0" layoutY="54.0" size="14" />
+                  <Text fill="#8a8989" layoutX="292.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Selection">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <FontAwesomeIcon fill="RED" glyphName="CAR" layoutX="434.0" layoutY="55.0" size="14" />
+                  <Text fill="#8a8989" layoutX="454.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booked">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <FontAwesomeIcon fill="#676867" glyphName="CAR" layoutX="557.0" layoutY="55.0" size="14" />
+                  <Text fill="#8a8989" layoutX="577.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <FontAwesomeIcon fill="#bbbcbb" glyphName="CAR" layoutX="692.0" layoutY="57.0" selectionFill="#c1b4b4" size="14" text="" />
+                  <Text fill="#c1b4b4" layoutX="715.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Available">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Text>
+<!--                  <Button fx:id="booking_returnbtn" layoutX="782.0" layoutY="14.0" minHeight="8.0" mnemonicParsing="false" onAction="#Booking_ReturnBtn" prefHeight="8.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-cursor: hand;">-->
+<!--                     <graphic>-->
+<!--                        <FontAwesomeIcon fill="#3a4558" glyphName="SIGN_OUT" size="17" />-->
+<!--                     </graphic>-->
+<!--                  </Button>-->
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="700.0" stylesheets="@Pickslot.css">
+               <children>
+                  <AnchorPane fx:id="parkingSlot" layoutX="59.0" layoutY="22.0" prefHeight="307.0" prefWidth="727.0" style="-fx-background-color: WHITE;" stylesheets="@Pickslot.css">
+                     <children>
+                        <Text fill="#8a8989" layoutX="115.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PARKING A">
+                           <font>
+                              <Font name="Calibri Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#8a8989" layoutX="501.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PARKING B">
+                           <font>
+                              <Font name="Calibri Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="slotA1" arcHeight="5.0" arcWidth="5.0" fill="#ff6262" height="85.0" layoutX="19.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-booked" width="54.0" />
+                        <Text fill="#5b5858" layoutX="34.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A1">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="A2" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="99.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="114.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A2">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="A3" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="168.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" AnchorPane.leftAnchor="166.0" />
+                        <Rectangle fx:id="slotA4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="85.0" layoutX="246.0" layoutY="68.0" stroke="#080808" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: black; -fx-stroke-dash-array: 5;" width="54.0" />
+                        <Text fill="#5b5858" layoutX="260.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A4">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="A7" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="168.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" AnchorPane.leftAnchor="165.0" />
+                        <Text fill="#5b5858" layoutX="179.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A7">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="A5" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="22.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="39.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A5">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="A6" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="100.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="114.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A6">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="A8" arcHeight="5.0" arcWidth="5.0" fill="#bdbdbd" height="85.0" layoutX="246.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="260.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A8">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="B1" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="438.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="455.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B1">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="B2" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="525.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="540.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" B2">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="B3" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="608.0" layoutY="68.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="625.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B3">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="slotB5" arcHeight="5.0" arcWidth="5.0" fill="#ff6262" height="85.0" layoutX="525.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-booked" width="54.0" />
+                        <Text fill="#5b5858" layoutX="542.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B5">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="B4" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="438.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="455.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B4">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Rectangle fx:id="B6" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="85.0" layoutX="608.0" layoutY="179.0" onMouseClicked="#selectParkingSlot" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20; -fx-stroke: transparent;" styleClass="rectangle-available" width="54.0" />
+                        <Text fill="#5b5858" layoutX="625.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B6">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#5b5858" layoutX="180.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A3">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="bookingDetails" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;">
+               <children>
+                  <DatePicker fx:id="entryDate" layoutX="36.0" layoutY="20.0" onAction="#onCheckDateButtonClick" prefHeight="24.0" prefWidth="107.0" promptText="Entry Date" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+                  <DatePicker fx:id="existDate" layoutX="391.0" layoutY="21.0" onAction="#onCheckDateButtonClickEndTime" prefHeight="24.0" prefWidth="107.0" promptText="Exist Date" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+                  <ComboBox fx:id="entryTime" editable="true" layoutX="207.0" layoutY="21.0" prefHeight="27.0" prefWidth="150.0" promptText="Entry Time(Ex: 6:30)" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+                  <ComboBox fx:id="existTime" editable="true" layoutX="532.0" layoutY="21.0" prefHeight="27.0" prefWidth="150.0" promptText="Exist Time(Ex: 18:30)" style="-fx-background-color: transparent; -fx-border-color: #8a8989;" />
+                  <Text layoutX="36.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOKING DETAILS: ">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#8a8989" layoutX="221.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slot Name:">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="selectedSlotName" fill="#5b5858" layoutX="296.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3, A4">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#8a8989" layoutX="374.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Slot: ">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="totalSlot" fill="#5b5858" layoutX="447.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#8a8989" layoutX="481.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount:">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#5b5858" layoutX="581.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="bookingSlot" layoutX="712.0" layoutY="48.0" mnemonicParsing="false" onAction="#BookedBtn" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #439da1;" stylesheets="@Pickslot.css" text="BOOK" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="totalAmount" fill="#5b5858" layoutX="596.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="profileArea" layoutX="250.2928924560547" visible="false">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #fff;" stylesheets="@UserProfile.css">
+               <children>
+                  <Text layoutX="39.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Profile ">
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="38.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage profile information for account security">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Line endX="749.0" endY="-7.62939453125E-6" layoutX="99.0" layoutY="81.0" startX="-100.0" stroke="#c6c0c0" />
+                  <Text fill="#4a4848" layoutX="97.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="127.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.bottomAnchor="446.8212890625" AnchorPane.topAnchor="171.0">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="100.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" AnchorPane.rightAnchor="685.06259765625">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="122.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" AnchorPane.topAnchor="229.4208984375">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="firstNameUser" layoutX="183.0" layoutY="293.0" prefHeight="44.0" prefWidth="424.0">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="userName" layoutX="211.0" layoutY="113.0">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="userEmail" layoutX="210.0" layoutY="193.0" AnchorPane.topAnchor="165.0">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="userPhone" layoutX="211.0" layoutY="248.0" AnchorPane.topAnchor="223.0">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <Text fill="#4a4848" layoutX="99.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" AnchorPane.rightAnchor="688.06259765625">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="lastNameUser" layoutX="183.0" layoutY="362.0" prefHeight="44.0" prefWidth="424.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="changePass" layoutX="194.0" layoutY="438.0" mnemonicParsing="false" onAction="#openChangePass" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="Change password" textFill="#151515">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="saveInfor" layoutX="356.0" layoutY="438.0" mnemonicParsing="false" onAction="#save" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="save" textFill="#151515">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane id="changePassword" fx:id="passChange" layoutX="54.0" layoutY="166.0" prefHeight="430.0" prefWidth="758.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 5px;" visible="false">
+                     <children>
+                        <Text fill="#4a4848" layoutX="153.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Old password">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a4848" layoutX="153.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New password">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="41.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a4848" layoutX="153.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm new password">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="updatePassBtn" layoutX="288.0" layoutY="334.0" mnemonicParsing="false" onAction="#updatePassword" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="Update password" textFill="#151515">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <PasswordField fx:id="oldPassWord" layoutX="153.0" layoutY="102.0" prefHeight="44.0" prefWidth="414.0" />
+                        <PasswordField fx:id="newPassword" layoutX="153.0" layoutY="184.0" prefHeight="44.0" prefWidth="414.0" />
+                        <PasswordField fx:id="comfirmPassword" layoutX="153.0" layoutY="267.0" prefHeight="44.0" prefWidth="414.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="paymentAndBill" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0">
+               <children>
+                  <AnchorPane prefHeight="660.0" prefWidth="850.0">
+                     <children>
+                        <Text fill="#3a4558" layoutX="145.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="684.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
+                        <Button fx:id="backToBooking" layoutX="5.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#ReturnBooking" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <FontAwesomeIcon fx:id="returnHome" fill="#3a4558" glyphName="ARROW_LEFT" size="15" />
+                           </graphic>
+                        </Button>
+                        <AnchorPane fx:id="payment" layoutX="19.0" layoutY="73.0" prefHeight="357.0" prefWidth="361.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 20;">
+                           <children>
+                              <ComboBox fx:id="paymentMethod" layoutX="14.0" layoutY="34.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+                              <Text fill="WHITE" layoutX="17.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Method">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="102.0" fitWidth="106.0" layoutX="202.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../../../image/visa (1).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="199.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../../../image/paypal (1).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="78.0" fitWidth="77.0" layoutX="202.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/atm-card.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="cardNumber" layoutX="14.0" layoutY="105.0" prefHeight="27.0" prefWidth="335.0" promptText="Ex: 0935632..." style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+                              <Text fill="WHITE" layoutX="17.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="cardHolderName" layoutX="14.0" layoutY="172.0" prefHeight="27.0" prefWidth="335.0" promptText="Ex: Nguyen Van A" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+                              <Text fill="WHITE" layoutX="17.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Holder Name">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="codeCard" layoutX="14.0" layoutY="296.0" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+                              <Text fill="WHITE" layoutX="17.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#727272" layoutX="92.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 digits back on your card" />
+                              <TextField fx:id="expiryMonth" layoutX="14.0" layoutY="237.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+                              <Text fill="WHITE" layoutX="17.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry Month ">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="expiryYear" layoutX="197.0" layoutY="237.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" />
+                              <Text fill="WHITE" layoutX="202.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry Year">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <Text fill="#3a4558" layoutX="14.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Announcement">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#727272" layoutX="56.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please check your information carefully before submitting." />
+                        <Button fx:id="confirmPayment" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" onAction="#PaymentCheck" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 10;" text="Confirm Payment" textFill="#3a4558">
+                           <font>
+                              <Font name="Arial Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancelPayment" layoutX="10.0" layoutY="548.0" mnemonicParsing="false" onAction="#ReturnBooking" prefHeight="38.0" prefWidth="827.0" style="-fx-background-color: Transparent; -fx-background-radius: 10; -fx-border-color: #b5d0ff; -fx-border-width: 2; -fx-border-radius: 10; -fx-cursor: hand;" text="Cancel Payment" textFill="#3a4558">
+                           <font>
+                              <Font name="Arial Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <Text fill="#3a4558" layoutX="561.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Summary">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <AnchorPane fx:id="orderSummary" layoutX="519.0" layoutY="73.0" prefHeight="212.0" prefWidth="290.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 20;">
+                           <children>
+                              <Text fill="WHITE" layoutX="21.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price :">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Line endX="151.0" layoutX="119.0" layoutY="141.0" startX="-100.0" stroke="WHITE" />
+                              <Text fill="WHITE" layoutX="21.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Slot:">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="21.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total :">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceOrder" fill="WHITE" layoutX="195.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="totalSlot_Payment" fill="WHITE" layoutX="213.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="totalOder" fill="WHITE" layoutX="195.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ " wrappingWidth="17.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceOrder1" fill="WHITE" layoutX="219.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="totalOrder" fill="WHITE" layoutX="212.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="21.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slot">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="slotName" fill="WHITE" layoutX="191.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3, A4">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="paymentCheck" layoutX="206.0" layoutY="30.0" prefHeight="566.0" prefWidth="400.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 15;">
+                           <children>
+                              <FontAwesomeIcon fx:id="orderConfirmed" fill="#3a4558" glyphName="CHECK_CIRCLE" layoutX="149.0" layoutY="189.0" size="125" wrappingWidth="108.2857141494751" />
+                              <Text fill="#3a4558" layoutX="112.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Confirmed">
+                                 <font>
+                                    <Font name="Arial Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#3a4558" layoutX="45.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thank you for  your order. You will receive email confirmation shortly." textAlignment="CENTER" wrappingWidth="310.67578125">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#3a4558" layoutX="45.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check the status of your order on the Order tracking page." textAlignment="CENTER" wrappingWidth="310.67578125">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="continueBooking" layoutX="20.0" layoutY="450.0" mnemonicParsing="false" onAction="#ContinueBooking" prefHeight="38.0" prefWidth="361.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" text="Continue Booking" textFill="#3a4558">
+                                 <font>
+                                    <Font name="Arial Bold" size="19.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+
    </children>
-</HBox>
+</Pane>
