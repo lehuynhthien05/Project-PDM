@@ -1,6 +1,6 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.session;
 
-public class DateSession {
+public class DateEndSession {
     private static String selectedDate;
 
     public static void setSelectedDate(String date) {

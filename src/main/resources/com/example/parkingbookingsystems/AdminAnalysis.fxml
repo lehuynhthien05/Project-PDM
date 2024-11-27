@@ -13,7 +13,7 @@
 <!--<?import javafx.scene.layout.HBox?>-->
 <!--<?import javafx.scene.text.Font?>-->
 
-<!--<AnchorPane fx:id="analyticsBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.StatisticsController">-->
+<!--<AnchorPane fx:id="analyticsBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.controller.StatisticsController">-->
 <!--   <children>-->
 <!--      <HBox fx:id="headerAnalytic" prefHeight="63.0" prefWidth="849.0" style="-fx-background-color: #556C92;" AnchorPane.rightAnchor="0.7999999999999545">-->
 <!--         <children>-->

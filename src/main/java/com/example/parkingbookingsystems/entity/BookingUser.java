@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.entity;
 
 public class BookingUser {
     private int bookingId;
