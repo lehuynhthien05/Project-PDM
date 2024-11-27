@@ -31,9 +31,9 @@ public class ChoosingController {
             String fxmlPath = null;
 
             if (event.getSource() == admin) {
-                fxmlPath = "/com/example/parkingbookingsystems/LoginAdmin.fxml";
+                fxmlPath = "/com/example/parkingbookingsystems/frontend/LoginAdmin.fxml";
             } else if (event.getSource() == user) {
-                fxmlPath = "/com/example/parkingbookingsystems/loginUser.fxml";
+                fxmlPath = "/com/example/parkingbookingsystems/frontend/loginUser.fxml";
             }
 
             if (fxmlPath != null) {

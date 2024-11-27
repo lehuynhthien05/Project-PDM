@@ -88,7 +88,7 @@ public class LoginController {
                             Platform.runLater(() -> {
                                 try {
 
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/AdminProfile.fxml"));
                                     Parent root = loader.load();
 
                                     AdminController controller = loader.getController();
@@ -151,7 +151,7 @@ public class LoginController {
 
     public void registerButton() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/RegisterAdmin.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/RegisterAdmin.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
@@ -168,7 +168,7 @@ public class LoginController {
 
     public void returnToChoose(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/Choose.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/Choose.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 

@@ -724,7 +724,7 @@ public class UserInterface {
 
                 // Open the login stage
                 Stage loginStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/LoginUser.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/loginUser.fxml"));
                 Parent root = loader.load();
                 loginStage.initStyle(StageStyle.UNDECORATED);
                 loginStage.setScene(new Scene(root));

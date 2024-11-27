@@ -68,7 +68,7 @@ public class RegisterAdminController {
             Stage stage = (Stage) loginbtn.getScene().getWindow();
             stage.close();
             Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/LoginAdmin.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/LoginAdmin.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

@@ -465,7 +465,7 @@ public class AdminController {
 
     public void returnToHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/AdminProfile.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -501,7 +501,7 @@ public class AdminController {
 
                 // Open the login stage
                 Stage loginStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/loginAdmin.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/LoginAdmin.fxml"));
                 Parent root = loader.load();
                 loginStage.initStyle(StageStyle.UNDECORATED);
                 loginStage.setScene(new Scene(root));

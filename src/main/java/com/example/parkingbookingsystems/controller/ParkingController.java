@@ -50,7 +50,7 @@ public class ParkingController {
 
     public void returnToHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/AdminProfile.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

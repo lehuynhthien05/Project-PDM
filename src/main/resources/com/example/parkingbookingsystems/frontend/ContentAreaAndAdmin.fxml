@@ -16,7 +16,7 @@
 
 <HBox fx:id="adminPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.controller.AdminController">
    <children>
-      <VBox fx:id="contentUser" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css">
+      <VBox fx:id="contentUser" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/stylesheet.css">
          <children>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="847.0" style="-fx-background-color: #fff;">
                <children>
