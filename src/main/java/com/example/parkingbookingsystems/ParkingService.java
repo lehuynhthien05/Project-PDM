@@ -12,7 +12,8 @@ import java.sql.SQLException;
 public class ParkingService {
     public ObservableList<Parking> getBookingUserData() {
         ObservableList<Parking> parkingList = FXCollections.observableArrayList();
-        String query = "SELECT p.parkingArea_id, p.name, b.status, p.locations, p.admin_id " +
+        //locations to location
+        String query = "SELECT p.parkingArea_id, p.name, b.status, p.location, p.admin_id " +
                 "FROM Booking b " +
                 "JOIN ParkingArea p ON p.parkingArea_id = b.parkingArea_id";
 
@@ -24,7 +25,7 @@ public class ParkingService {
                 String parkingId = resultSet.getString("parkingArea_id");
                 String name = resultSet.getString("name");
                 String status = resultSet.getString("status");
-                String location = resultSet.getString("locations");
+                String location = resultSet.getString("location");
                 String adminId = resultSet.getString("admin_id");
 
                 Parking parking = new Parking(parkingId, name, status, location, adminId);

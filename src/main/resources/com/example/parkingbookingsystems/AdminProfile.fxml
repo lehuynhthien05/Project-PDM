@@ -374,16 +374,14 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableUserInfor" layoutY="75.0" prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
+                  <TableView fx:id="userTableView" layoutY="75.0"  prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
                      <columns>
-                        <TableColumn fx:id="idUsers" prefWidth="57.0" text="ID" />
-                        <TableColumn fx:id="firstNameUsers" prefWidth="150.0" style="-fx-border-color: BLACK;" text="First Name" />
-                        <TableColumn fx:id="lastNameUsers" prefWidth="100.0" text="Last Name" />
-                        <TableColumn fx:id="startTimeBooking" prefWidth="100.0" style="-fx-border-color: BLACK;" text="Start Time" />
-                        <TableColumn fx:id="endTimeBooking" prefWidth="100.0" text="End Time" />
-                        <TableColumn fx:id="userNames" prefWidth="90.0" style="-fx-border-color: BLACK;" text="User Name" />
-                        <TableColumn fx:id="passwordUsers" prefWidth="100.0" text="Password" />
-                        <TableColumn fx:id="phonenumberUsers" prefWidth="149.0" style="-fx-border-color: BLACK;" text="Phone Number" />
+                        <TableColumn fx:id="bookingIdColumn" prefWidth="57.0" text="ID" />
+                        <TableColumn fx:id="firstNameColumn" prefWidth="198.0" style="-fx-border-color: BLACK;" text="First Name" />
+                        <TableColumn fx:id="lastNameColumn" prefWidth="194.0" text="Last Name" />
+                        <TableColumn fx:id="startTimeColumn" prefWidth="105.0" style="-fx-border-color: BLACK;" text="Start Time" />
+                        <TableColumn fx:id="endTimeColumn" prefWidth="108.0" text="End Time" />
+                        <TableColumn fx:id="phoneNumberUsers" prefWidth="188.0" style="-fx-border-color: BLACK;" text="Phone Number" />
                      </columns>
                      <padding>
                         <Insets right="2.0" />
@@ -398,7 +396,7 @@
       </VBox>
       <VBox fx:id="analyticsBar" layoutX="250.60000610351562" visible="false">
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" visible="false">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" >
                <children>
                   <HBox fx:id="headerAnalytic" prefHeight="63.0" prefWidth="849.0" style="-fx-background-color: #556C92;" AnchorPane.rightAnchor="0.7999999999999545">
                      <children>
@@ -577,18 +575,14 @@
                   </Button>
                </children>
             </AnchorPane>
-            <TableView fx:id="tableView" layoutY="75.0"  prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
+            <TableView fx:id="tableView" onSort="#initialize" prefHeight="566.0" prefWidth="840.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;">
                <columns>
-                  <TableColumn fx:id="bookingIdColumn" prefWidth="57.0" text="ID" />
-                  <TableColumn fx:id="firstNameColumn" prefWidth="198.0" style="-fx-border-color: BLACK;" text="First Name" />
-                  <TableColumn fx:id="lastNameColumn" prefWidth="194.0" text="Last Name" />
-                  <TableColumn fx:id="startTimeColumn" prefWidth="105.0" style="-fx-border-color: BLACK;" text="Start Time" />
-                  <TableColumn fx:id="endTimeColumn" prefWidth="108.0" text="End Time" />
-                  <TableColumn fx:id="phoneNumberUsers" prefWidth="188.0" style="-fx-border-color: BLACK;" text="Phone Number" />
+                  <TableColumn fx:id="parkingIdColumn" prefWidth="100.0" style="-fx-font-size: 15;" text="ID parking" />
+                  <TableColumn fx:id="parkingNameColumn" prefWidth="150.0" style="-fx-border-color: BLACK; -fx-font-size: 15;" text="Name" />
+                  <TableColumn fx:id="parkingStatusColumn" prefWidth="150.0" style="-fx-font-size: 15;" text="Status" />
+                  <TableColumn fx:id="parkingLocationColumn" prefWidth="250.0" style="-fx-border-color: BLACK; -fx-font-size: 15;" text="Location" />
+                  <TableColumn fx:id="adminIdColumn" prefWidth="197.0" style="-fx-font-size: 15;" text="ID admin" />
                </columns>
-               <padding>
-                  <Insets right="2.0" />
-               </padding>
             </TableView>
          </children>
       </VBox>
