@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems.Controller;
+package com.example.parkingbookingsystems;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
@@ -16,7 +16,6 @@ public class Database {
         ds.setServerName("localhost");
         ds.setPortNumber(1433);
         ds.setDatabaseName("ParkingBookingSystem");
-
 
         ds.setTrustServerCertificate(true);
         try {
