@@ -155,7 +155,7 @@
             <VBox prefHeight="660.0" prefWidth="10.0" />
          </children>
       </VBox>
-      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css" visible="false">
+      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css" visible="true">
          <children>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
@@ -567,7 +567,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <VBox fx:id="paymentAndBill" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+      <VBox fx:id="paymentAndBill" visible="false" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
          <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0">
                <children>
@@ -679,12 +679,12 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="priceOrder" fill="WHITE" layoutX="195.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
+                              <Text fx:id="priceOrder" fill="WHITE" layoutX="195.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="totalSlot_Payment" fill="WHITE" layoutX="213.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+                              <Text fx:id="totalSlot_Payment" fill="WHITE" layoutX="213.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
@@ -699,7 +699,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="totalOrder" fill="WHITE" layoutX="212.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+                              <Text fx:id="totalOrderPrice" fill="WHITE" layoutX="212.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
@@ -709,14 +709,14 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="SlotName" fill="WHITE" layoutX="191.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" A3, A4">
+                              <Text fx:id="slotName" fill="WHITE" layoutX="191.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="paymentCheck" layoutX="206.0" layoutY="30.0" prefHeight="566.0" prefWidth="400.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 15;">
+                        <AnchorPane fx:id="paymentCheck" visible="false"  layoutX="206.0" layoutY="30.0" prefHeight="566.0" prefWidth="400.0" style="-fx-background-color: #b5d0ff; -fx-background-radius: 15;">
                            <children>
                               <FontAwesomeIcon fx:id="orderConfirmed" fill="#3a4558" glyphName="CHECK_CIRCLE" layoutX="149.0" layoutY="189.0" size="125" wrappingWidth="108.2857141494751" />
                               <Text fill="#3a4558" layoutX="112.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Confirmed">

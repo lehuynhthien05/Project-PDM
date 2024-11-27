@@ -398,23 +398,18 @@ public class UserInterface {
     private Text priceOrder;
 
     @FXML
-    private Text totalOrder;
+    private Text totalOrderPrice;
 
     @FXML
     private Text totalSlot_Payment;
-
-    private Text SlotName;
+    @FXML
+    private Text slotName;
 
     private int totalPrice;
 
 
-    public void setSelectedSlots(Set<String> selectedSlots) {
-        this.selectedSlots = selectedSlots;
-        if (totalSlot_Payment != null) {
-            totalSlot_Payment.setText(String.valueOf(selectedSlots.size()));
-        } else {
-            System.out.println();
-        }
+    public void setSelectedSlots() {
+        totalSlot_Payment.setText("1");
     }
 
 
@@ -424,7 +419,7 @@ public class UserInterface {
 
         //Calculate total money
         int total = selectedSlots.size() * 100;
-        totalOrder.setText(String.valueOf(total));
+        totalOrderPrice.setText(String.valueOf(total));
     }
 
     //Update SelectedSlotName
@@ -434,7 +429,7 @@ public class UserInterface {
 
     //Update SelectedSlotName
     public void updateSlotNameInPayment() {
-        SlotName.setText(String.join(", ", selectedSlots));
+        slotName.setText(String.join(", ", selectedSlots));
     }
     private void writeSelectedSlotsToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("selectedSlots.txt", true))) {
@@ -539,10 +534,12 @@ public class UserInterface {
             try {
                 // Execute the SQL command
                 executeSQLCommandBooking();
-                paymentCheck.setVisible(false);
                 Payment();
 
-                updateSelectedSlotName();
+                updateSlotNameInPayment();
+
+                setSelectedSlots();
+
                 setTotalPrice(100); // Set total price to 100
 
 
