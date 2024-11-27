@@ -1,7 +1,5 @@
 package com.example.parkingbookingsystems;
 
-import com.example.parkingbookingsystems.Controller.BookingUser;
-import com.example.parkingbookingsystems.Controller.BookingUserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

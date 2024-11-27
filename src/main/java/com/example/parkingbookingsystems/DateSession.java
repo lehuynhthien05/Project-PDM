@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems.Controller;
+package com.example.parkingbookingsystems;
 
 public class DateSession {
     private static String selectedDate;

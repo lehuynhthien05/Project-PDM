@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems.Controller;
+package com.example.parkingbookingsystems;
 
 import com.example.parkingbookingsystems.security.PasswordUtils;
 import javafx.application.Platform;
@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,9 +18,14 @@ import java.sql.*;
 
 public class LoginUserController {
 
+    @FXML
+    private Button close;
 
     @FXML
     private Button loginBtn;
+
+    @FXML
+    private AnchorPane main_form;
 
     @FXML
     private PasswordField password;
@@ -32,6 +39,8 @@ public class LoginUserController {
     @FXML
     private Button registerBtn;
 
+    @FXML
+    private Text usernameDisplay;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -39,8 +48,8 @@ public class LoginUserController {
     private double x = 0;
     private double y = 0;
 
-    private String firstName;
-    private String lastName;
+    //    private String firstName;
+//    private String lastName;
     private int currentUserId;
 
     public void close(){
@@ -71,6 +80,9 @@ public class LoginUserController {
     }
 
 
+    public int getCurrentUserId() {
+        return this.currentUserId;
+    }
 
 
 
@@ -92,14 +104,11 @@ public class LoginUserController {
                 } else {
                     if (result.next()) {
                         String hashed = result.getString("password");
-                        if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
-                            int userId = result.getInt("user_id");
-                            this.currentUserId = userId;
+                        if (PasswordUtils.verifyPassword(password.getText() , hashed)) {
 
-                            // Set the first name and last name based on the user_id
-                            this.firstName = result.getString("firstName");
-                            this.lastName = result.getString("lastName");
 
+                            String loginUsername = result.getString("username");
+                            UserSession.setCurrentUserId(result.getInt("user_id"));
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setContentText("Login successful");
@@ -112,12 +121,14 @@ public class LoginUserController {
                                     Parent root = loader.load();
 
                                     UserInterface controller = loader.getController();
-                                    UserSession.setCurrentUserId(userId);
 
-                                    // Set the username display in the new controller
-                                    controller.setFirstName(this.firstName);
-                                    controller.setLastName(this.lastName);
+                                    //Pass the username to the UserInterface controller
+                                    controller.setLoginUsername(loginUsername);
                                     controller.setUsernameDisplay();
+                                    controller.loadUserInfo();
+
+//                                    controller.setUsernameDisplay();
+
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
