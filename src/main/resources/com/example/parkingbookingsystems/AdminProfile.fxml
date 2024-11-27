@@ -2,214 +2,595 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="mainPageAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.AdminController">
-    <children>
-        <VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@stylesheet.css">
-            <children>
-                <ImageView fitHeight="120.0" fitWidth="140.0" pickOnBounds="true" smooth="false">
-                    <image>
-                        <Image url="@../../../image/user_icon.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </ImageView>
-                <Label fx:id="adminName1" text="LE HUYNH THIEN">
-                    <font>
-                        <Font name="Calibri" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="10.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Admin" textFill="#b8b1b1">
-                    <font>
-                        <Font name="Calibri Bold" size="18.0" />
-                    </font>
-                    <padding>
+<Pane fx:id="admiPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" fx:controller="com.example.parkingbookingsystems.AdminController" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@stylesheet.css">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="140.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../image/user_icon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="AdminName" contentDisplay="RIGHT" mnemonicParsing="false" styleClass="sidebar-user-btn" stylesheets="@stylesheet.css" text="LE HUYNHH THIEN">
+               <font>
+                  <Font name="Calibri" size="15.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIcon glyphName="SORT_DESC" glyphStyle="-fx-fill:#b8b1b1" size="1.4em" />
+               </graphic>
+            </Button>
+            <Label layoutX="10.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Admin" textFill="#b8b1b1">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox fx:id="adminProfile" onMouseClicked="#AdminProfile"   alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIcon glyphName="USER" size="1.5em" styleClass="sidebar-btn-icon" />
+                  <Label text="Admin Profile" textFill="#b8b1b1">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="17.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="usersInfor" onMouseClicked="#User" alignment="CENTER_LEFT" layoutX="10.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIcon glyphName="USERS" size="1.5em" styleClass="sidebar-btn-icon" />
+                  <Label text="Users" textFill="#b8b1b1">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="17.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="analytic" onMouseClicked="#Analytics" alignment="CENTER_LEFT" layoutX="10.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIcon glyphName="BAR_CHART" size="1.5em" styleClass="sidebar-btn-icon" />
+                  <Label text="Analytics" textFill="#b8b1b1">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="17.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="overview" onMouseClicked="#Parkinglot" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIcon glyphName="MAP_MARKER" size="1.5em" styleClass="sidebar-btn-icon" />
+                  <Label text="Parking Lot Overview" textFill="#b8b1b1">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="17.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="signOutAdmin" onMouseClicked="#SignOut" alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="252.0" style="-fx-border-color: red; -fx-cursor: hand;" styleClass="sidebar-btn">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIcon glyphName="POWER_OFF" selectionFill="#d9d1d1" size="2em" styleClass="sidebar-btn-icon">
+                     <HBox.margin>
                         <Insets left="10.0" />
-                    </padding>
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </Label>
-                <HBox fx:id="adminProfile" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#AdminProfile" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                    <children>
-                        <FontAwesomeIcon glyphName="USER" size="1.5em" styleClass="sidebar-btn-icon" />
-                        <Label text="Admin Profile" textFill="#b8b1b1">
-                            <font>
-                                <Font name="Consolas Bold" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="17.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox fx:id="user" alignment="CENTER_LEFT" layoutX="10.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#User" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                    <children>
-                        <FontAwesomeIcon glyphName="USERS" size="1.5em" styleClass="sidebar-btn-icon" />
-                        <Label text="Users" textFill="#b8b1b1">
-                            <font>
-                                <Font name="Consolas Bold" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="17.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="25.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox fx:id="analytic" alignment="CENTER_LEFT" layoutX="10.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Analytics" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                    <children>
-                        <FontAwesomeIcon glyphName="BAR_CHART" size="1.5em" styleClass="sidebar-btn-icon" />
-                        <Label text="Analytics" textFill="#b8b1b1">
-                            <font>
-                                <Font name="Consolas Bold" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="17.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="25.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox fx:id="overview" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Parkinglot" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                    <children>
-                        <FontAwesomeIcon glyphName="MAP_MARKER" size="1.5em" styleClass="sidebar-btn-icon" />
-                        <Label text="Parking Lot Overview" textFill="#b8b1b1">
-                            <font>
-                                <Font name="Consolas Bold" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="17.0" />
-                            </HBox.margin>
-                            <padding>
-                                <Insets left="7.0" />
-                            </padding>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="25.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox fx:id="signOutAdmin" alignment="CENTER_LEFT" onMouseClicked="#SignOut" prefHeight="49.0" prefWidth="252.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
-                    <padding>
-                        <Insets left="40.0" />
-                    </padding>
-                    <children>
-                        <FontAwesomeIcon glyphName="POWER_OFF" selectionFill="#d9d1d1" size="2em" styleClass="sidebar-btn-icon">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </FontAwesomeIcon>
-                        <Label text="SIGN OUT" textFill="#b8b1b1">
-                            <font>
-                                <Font name="Consolas Bold" size="18.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="70.0" />
-                    </VBox.margin>
-                </HBox>
-            </children>
-        </VBox>
-        <AnchorPane fx:id="profileArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="849.0" stylesheets="@UserProfile.css">
-            <children>
-                <Text layoutX="39.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Profile ">
-                    <font>
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Label text="SIGN OUT" textFill="#b8b1b1">
+                     <font>
+                        <Font name="Consolas Bold" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="70.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="profileArea" layoutX="250.2928924560547">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #fff;" stylesheets="@UserProfile.css">
+               <children>
+                  <Text layoutX="39.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Profile ">
+                     <font>
                         <Font name="Arial Bold" size="30.0" />
-                    </font>
-                </Text>
-                <Text fill="#4a4848" layoutX="38.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage profile information for account security">
-                    <font>
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="38.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage profile information for account security">
+                     <font>
                         <Font size="14.0" />
-                    </font>
-                </Text>
-                <Line endX="749.0" endY="-7.62939453125E-6" layoutX="99.0" layoutY="81.0" startX="-100.0" stroke="#c6c0c0" />
-                <Text fill="#4a4848" layoutX="97.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Name" AnchorPane.leftAnchor="80.0">
-                    <font>
+                     </font>
+                  </Text>
+                  <Line endX="749.0" endY="-7.62939453125E-6" layoutX="99.0" layoutY="81.0" startX="-100.0" stroke="#c6c0c0" />
+                  <Text fill="#4a4848" layoutX="97.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                     <font>
                         <Font name="Arial" size="15.0" />
-                    </font>
-                </Text>
-                <Text fill="#4a4848" layoutX="127.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.topAnchor="165.4208984375">
-                    <font>
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="127.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.bottomAnchor="446.8212890625" AnchorPane.topAnchor="171.0">
+                     <font>
                         <Font name="Arial" size="15.0" />
-                    </font>
-                </Text>
-                <Text fill="#4a4848" layoutX="100.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="281.4208984375">
-                    <font>
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="100.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" AnchorPane.rightAnchor="685.06259765625">
+                     <font>
                         <Font name="Arial" size="15.0" />
-                    </font>
-                </Text>
-                <Button fx:id="saveInfor" layoutX="380.0" layoutY="498.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #FA8824; -fx-cursor: hand;" styleClass="clicked" stylesheets="@UserProfile.css" text="Save" textFill="#fffefe">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Text fill="#4a4848" layoutX="122.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" AnchorPane.topAnchor="218.4208984375">
-                    <font>
+                     </font>
+                  </Text>
+                  <Text fill="#4a4848" layoutX="122.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" AnchorPane.topAnchor="229.4208984375">
+                     <font>
                         <Font name="Arial" size="15.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="firstNameAdmin" layoutX="203.0" layoutY="268.0" prefHeight="44.0" prefWidth="424.0" style="-fx-cursor: hand;" AnchorPane.topAnchor="268.0" />
-                <Label fx:id="adminName" layoutX="211.0" layoutY="113.0" text="LE HUYNH THIEN">
-                    <font>
-                        <Font name="Calibri" size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="adminEmail" layoutX="210.0" layoutY="194.0" text="huynhThien@gmail.com" AnchorPane.topAnchor="163.0">
-                    <font>
-                        <Font name="Calibri" size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="adminPhone" layoutX="211.0" layoutY="248.0" text="06******56" AnchorPane.topAnchor="217.0">
-                    <font>
-                        <Font name="Calibri" size="18.0" />
-                    </font>
-                </Label>
-                <Text fill="#4a4848" layoutX="94.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="349.4208984375">
-                    <font>
+                     </font>
+                  </Text>
+                  <TextField fx:id="firstNameAdmin" layoutX="183.0" layoutY="293.0" prefHeight="44.0" prefWidth="424.0">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="adminName" layoutX="211.0" layoutY="113.0">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="adminEmail" layoutX="210.0" layoutY="193.0" AnchorPane.topAnchor="165.0">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="adminPhone" layoutX="211.0" layoutY="248.0" AnchorPane.topAnchor="223.0">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <Text fill="#4a4848" layoutX="99.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" AnchorPane.rightAnchor="688.06259765625">
+                     <font>
                         <Font name="Arial" size="15.0" />
-                    </font>
-                </Text>
-                <Text fill="#4a4848" layoutX="89.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" AnchorPane.leftAnchor="95.0">
-                    <font>
-                        <Font name="Arial" size="15.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="lastNameAdmin" layoutX="203.0" layoutY="336.0" prefHeight="44.0" prefWidth="424.0" style="-fx-cursor: hand;" AnchorPane.topAnchor="336.0" />
-                <TextField fx:id="passwordAdmin" layoutX="203.0" layoutY="414.0" prefHeight="44.0" prefWidth="424.0" style="-fx-cursor: hand;" AnchorPane.leftAnchor="203.0" />
-            </children>
-        </AnchorPane>
-    </children>
-</HBox>
+                     </font>
+                  </Text>
+                  <TextField fx:id="lastNameAdmin" layoutX="183.0" layoutY="362.0" prefHeight="44.0" prefWidth="424.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="changePass" layoutX="194.0" layoutY="438.0" mnemonicParsing="false" onAction="#openChangePass" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="Change password" textFill="#151515">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="saveInfor" layoutX="356.0" layoutY="438.0" mnemonicParsing="false" onAction="#save" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="save" textFill="#151515">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane id="changePassword" fx:id="passChange" layoutX="45.0" layoutY="115.0" prefHeight="430.0" prefWidth="758.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 5px; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+                     <children>
+                        <Text fill="#4a4848" layoutX="153.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Old password">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a4848" layoutX="153.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New password">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="41.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a4848" layoutX="153.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm new password">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="updatePassBtn" layoutX="288.0" layoutY="334.0" mnemonicParsing="false" onAction="#updatePassword" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="Update password" textFill="#151515">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <PasswordField fx:id="oldPassWord" layoutX="153.0" layoutY="102.0" prefHeight="44.0" prefWidth="414.0" />
+                        <PasswordField fx:id="newPassword" layoutX="153.0" layoutY="184.0" prefHeight="44.0" prefWidth="414.0" />
+                        <PasswordField fx:id="comfirmPassword" layoutX="153.0" layoutY="267.0" prefHeight="44.0" prefWidth="414.0" />
+<!--                        <Button fx:id="backToBooking" layoutX="716.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#ReturnBooking" style="-fx-background-color: transparent;">-->
+<!--                           <graphic>-->
+<!--                              <FontAwesomeIcon fx:id="returnHome" fill="#3a4558" glyphName="CLOSE" size="18" text="" />-->
+<!--                           </graphic>-->
+<!--                           <font>-->
+<!--                              <Font size="16.0" />-->
+<!--                           </font>-->
+<!--                        </Button>-->
+                     </children>
+                  </AnchorPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="contentAdmin"  layoutX="251.0" prefHeight="660.0" prefWidth="850.0" stylesheets="@stylesheet.css" visible="false">
+         <children>
+            <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="847.0" style="-fx-background-color: #fff;">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label text="Customer Service representation" textFill="#b8b1b1">
+                           <font>
+                              <Font name="Calibri Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="VietNam, Tp HCM" textFill="#b8b1b1">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="MAP_MARKER" glyphStyle="-fx-fill:#b8b1b1" />
+                           </graphic>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Button fx:id="boookMark" layoutX="10.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-border-radius: 10; -fx-background-radius: 10;">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="BOOKMARK" size="1.5em" styleClass="content-area-circle-btns-icon" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="40.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="edit" layoutX="120.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 10; -fx-border-color: 10;">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="EDIT" size="1.5em" styleClass="content-area-circle-btns-icon" text="" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="save" layoutX="166.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="SAVE" size="1.5em" styleClass="content-area-circle-btns-icon" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="40.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="-3.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" top="5.0" />
+               </padding>
+            </HBox>
+            <AnchorPane fx:id="tableUser" prefHeight="516.0" prefWidth="852.0">
+               <children>
+                  <Text layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information Users Recently Booking " AnchorPane.leftAnchor="5.0">
+                     <font>
+                        <Font name="Calibri Bold" size="27.0" />
+                     </font>
+                  </Text>
+                  <HBox layoutX="425.0" layoutY="14.0" prefHeight="50.0" prefWidth="423.0">
+                     <children>
+                        <FontAwesomeIcon glyphName="SEARCH" size="2.5em" styleClass="menu-bar-btns-icon" text="">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </FontAwesomeIcon>
+                        <TextField fx:id="searchUsers" prefHeight="26.0" prefWidth="355.0" promptText="Search...">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableUserInfor" layoutY="75.0" prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
+                     <columns>
+                        <TableColumn fx:id="idUsers" prefWidth="57.0" text="ID" />
+                        <TableColumn fx:id="firstNameUsers" prefWidth="150.0" style="-fx-border-color: BLACK;" text="First Name" />
+                        <TableColumn fx:id="lastNameUsers" prefWidth="100.0" text="Last Name" />
+                        <TableColumn fx:id="startTimeBooking" prefWidth="100.0" style="-fx-border-color: BLACK;" text="Start Time" />
+                        <TableColumn fx:id="endTimeBooking" prefWidth="100.0" text="End Time" />
+                        <TableColumn fx:id="userNames" prefWidth="90.0" style="-fx-border-color: BLACK;" text="User Name" />
+                        <TableColumn fx:id="passwordUsers" prefWidth="100.0" text="Password" />
+                        <TableColumn fx:id="phonenumberUsers" prefWidth="149.0" style="-fx-border-color: BLACK;" text="Phone Number" />
+                     </columns>
+                     <padding>
+                        <Insets right="2.0" />
+                     </padding>
+                  </TableView>
+               </children>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="analyticsBar" layoutX="250.60000610351562" visible="false">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" visible="false">
+               <children>
+                  <HBox fx:id="headerAnalytic" prefHeight="63.0" prefWidth="849.0" style="-fx-background-color: #556C92;" AnchorPane.rightAnchor="0.7999999999999545">
+                     <children>
+                        <Label fx:id="greetAdmin" prefHeight="26.0" prefWidth="179.0" style="-fx-text-fill: WHITE; -fx-font-size: 16;" text="Good morning, Thien!">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="5.0" top="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <FontAwesomeIcon fill="#e7e5e5" glyphName="SEARCH" size="1.5em" text="">
+                           <HBox.margin>
+                              <Insets right="5.0" top="11.0" />
+                           </HBox.margin>
+                        </FontAwesomeIcon>
+                        <Label prefHeight="33.0" prefWidth="361.0" style="-fx-background-color: #2b2b2b; -fx-text-fill: WHITE; -fx-border-radius: 10; -fx-background-radius: 10;" text="Search....">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: WHITE;" text="🔔">
+                           <HBox.margin>
+                              <Insets left="-4.0" top="6.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="nameAdmin" style="-fx-text-fill: WHITE;" text="Le Huynh Thien">
+                                 <HBox.margin>
+                                    <Insets right="20.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <ImageView fx:id="adminImage" fitHeight="56.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/598d23ae-6ea7-4821-a638-be43704217e2.jpg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="trend" layoutY="81.0" prefHeight="110.0" prefWidth="850.0" AnchorPane.bottomAnchor="466.40000000000003">
+                     <children>
+                        <AnchorPane fx:id="orderTrend" prefHeight="119.0" prefWidth="200.0" style="-fx-background-color: #265A95; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;">
+                           <children>
+                              <Label fx:id="totalOrders" layoutX="20.0" layoutY="5.0" style="-fx-text-fill: WHITE;" text="49,920">
+                                 <font>
+                                    <Font name="Consolas Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="40.0" style="-fx-text-fill: white;" text="Total Orders">
+                                 <font>
+                                    <Font name="Consolas" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="revenueOrders" layoutX="20.0" layoutY="85.0" prefHeight="16.0" prefWidth="61.0" style="-fx-text-fill: GREEN; -fx-background-color: #F2F4F6; -fx-background-radius: 10;" text=" +10.9%">
+                                 <font>
+                                    <Font name="Consolas Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="136.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-color: #404C61; -fx-background-radius: 10;" text="         " textFill="#ec9696" />
+                              <FontAwesomeIcon fill="#fff9f9" glyphName="ALIGN_JUSTIFY" layoutX="148.0" layoutY="57.0" size="1.7em" text="" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane fx:id="earningTrend" prefHeight="119.0" prefWidth="200.0" style="-fx-background-color: #265A95; -fx-border-radius: 10; -fx-background-radius: 10;">
+                           <children>
+                              <Label fx:id="totalEarning" layoutX="20.0" layoutY="5.0" style="-fx-text-fill: WHITE;" text="51,890 USD">
+                                 <font>
+                                    <Font name="Consolas Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="40.0" style="-fx-text-fill: white;" text="Total Earnings">
+                                 <font>
+                                    <Font name="Consolas" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="revenueEarning" layoutX="20.0" layoutY="85.0" prefHeight="16.0" prefWidth="61.0" style="-fx-text-fill: GREEN; -fx-background-color: #F2F4F6; -fx-background-radius: 10;" text=" -3.9%">
+                                 <font>
+                                    <Font name="Consolas Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="149.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-color: #404C61; -fx-background-radius: 10;" text="         " textFill="#ec9696" />
+                              <FontAwesomeIcon fill="#fff9f9" glyphName="MONEY" layoutX="161.0" layoutY="57.0" size="1.7em" text="" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="90.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane fx:id="userTrend" prefHeight="119.0" prefWidth="200.0" style="-fx-background-color: #265A95; -fx-border-radius: 10; -fx-background-radius: 10;">
+                           <children>
+                              <Label fx:id="totalUsers" layoutX="20.0" layoutY="5.0" style="-fx-text-fill: WHITE;" text="11,580">
+                                 <font>
+                                    <Font name="Consolas Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="40.0" style="-fx-text-fill: white;" text="Total Users">
+                                 <font>
+                                    <Font name="Consolas" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="revenueUsers" layoutX="20.0" layoutY="85.0" prefHeight="16.0" prefWidth="61.0" style="-fx-text-fill: GREEN; -fx-background-color: #F2F4F6; -fx-background-radius: 10;" text=" +5.9%">
+                                 <font>
+                                    <Font name="Consolas Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="137.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-color: #404C61; -fx-background-radius: 10;" text="         " textFill="#ec9696" />
+                              <FontAwesomeIcon fill="#fff9f9" glyphName="USERS" layoutX="149.0" layoutY="56.0" size="1.7em" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <Label layoutX="14.0" layoutY="214.0" style="-fx-text-fill: BLACK;" text="Trend Of 3 Categories" AnchorPane.bottomAnchor="410.00000000000006" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font name="Calibri Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <BarChart fx:id="barChart" onMouseClicked="#initialize" layoutY="259.0" prefHeight="400.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6; -fx-alternative-column-fill-visible: TRUE; -fx-cursor: hand;" AnchorPane.bottomAnchor="-0.7999999999999545">
+                     <xAxis>
+                        <CategoryAxis  fx:id="xAxis" prefHeight="25.0" prefWidth="794.0" side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis fx:id="yAxis" side="LEFT" tickLabelFill="#1e1515" tickLength="5.0">
+                           <tickLabelFont>
+                              <Font size="13.0" />
+                           </tickLabelFont>
+                        </NumberAxis>
+                     </yAxis>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </BarChart>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="parkingLotOverviewPage" layoutX="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-border-color: #acafb5;" stylesheets="@stylesheet.css" visible="false">
+         <children>
+            <AnchorPane fx:id="lotsResearch" prefHeight="94.0" prefWidth="698.0" stylesheets="@stylesheet.css">
+               <children>
+                  <Text layoutX="36.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Lots">
+                     <font>
+                        <Font name="Calibri Bold" size="28.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="lotStatus" editable="true" layoutX="340.0" layoutY="33.0" prefHeight="27.0" prefWidth="102.0" promptText="Status" style="-fx-background-color: transparent; -fx-border-color: #acafb5;" />
+                  <DatePicker fx:id="DateStatus" layoutX="464.0" layoutY="32.0" prefHeight="27.0" prefWidth="102.0" promptText="Date" style="-fx-background-color: #acafb5;" />
+                  <Button fx:id="FindLot" layoutX="585.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="69.0" style="-fx-background-color: #b6c3d9; -fx-cursor: hand;" styleClass="find-btn" stylesheets="@stylesheet.css" text="Find" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tableView" layoutY="75.0"  prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
+               <columns>
+                  <TableColumn fx:id="bookingIdColumn" prefWidth="57.0" text="ID" />
+                  <TableColumn fx:id="firstNameColumn" prefWidth="198.0" style="-fx-border-color: BLACK;" text="First Name" />
+                  <TableColumn fx:id="lastNameColumn" prefWidth="194.0" text="Last Name" />
+                  <TableColumn fx:id="startTimeColumn" prefWidth="105.0" style="-fx-border-color: BLACK;" text="Start Time" />
+                  <TableColumn fx:id="endTimeColumn" prefWidth="108.0" text="End Time" />
+                  <TableColumn fx:id="phoneNumberUsers" prefWidth="188.0" style="-fx-border-color: BLACK;" text="Phone Number" />
+               </columns>
+               <padding>
+                  <Insets right="2.0" />
+               </padding>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</Pane>

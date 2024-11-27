@@ -75,6 +75,9 @@ public class LoginController {
                     if (result.next()) {
                         String hashed = result.getString("password");
                         if (PasswordUtils.verifyPassword(password.getText(), hashed)) {
+
+                            String loginUsername = result.getString("username");
+
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setContentText("Login successful");
@@ -83,8 +86,16 @@ public class LoginController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
 
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
+                                    Parent root = loader.load();
+
+                                    AdminController controller = loader.getController();
+
+                                    //Pass the username to the UserInterface controller
+                                    controller.setLoginUsername(loginUsername);
+                                    controller.setUsernameDisplay();
+                                    controller.loadUserInfo();
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
 
