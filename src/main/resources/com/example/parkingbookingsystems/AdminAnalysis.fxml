@@ -13,10 +13,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="analyticsBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="analyticsBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.StatisticsController">
    <children>
       <HBox fx:id="headerAnalytic" prefHeight="63.0" prefWidth="849.0" style="-fx-background-color: #556C92;" AnchorPane.rightAnchor="0.7999999999999545">
          <children>
+            <Button fx:id="returnHome" minHeight="8.0" mnemonicParsing="false" onAction="#returnToHome" prefHeight="33.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <FontAwesomeIcon glyphName="SIGN_OUT" size="20" />
+               </graphic>
+            </Button>
             <Label fx:id="greetAdmin" prefHeight="26.0" prefWidth="179.0" style="-fx-text-fill: WHITE; -fx-font-size: 16;" text="Good morning, Thien!">
                <font>
                   <Font name="Calibri" size="14.0" />
@@ -45,7 +50,7 @@
             </Button>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="nameAdmin" style="-fx-text-fill: WHITE;" text="Le Huynh Thien">
+                  <Label fx:id="nameAdmin" prefHeight="30.0" prefWidth="189.0" style="-fx-text-fill: WHITE;" text="Le Huynh Thien">
                      <HBox.margin>
                         <Insets right="20.0" top="10.0" />
                      </HBox.margin>
@@ -152,12 +157,12 @@
             <Font name="Calibri Bold" size="30.0" />
          </font>
       </Label>
-      <BarChart fx:id="trendChart" layoutY="259.0" prefHeight="400.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6; -fx-alternative-column-fill-visible: TRUE; -fx-cursor: hand;" AnchorPane.bottomAnchor="-0.7999999999999545">
+      <BarChart fx:id="barChart" layoutY="259.0" onMouseClicked="#initialize" prefHeight="400.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6; -fx-alternative-column-fill-visible: TRUE; -fx-cursor: hand;" AnchorPane.bottomAnchor="-0.7999999999999545">
          <xAxis>
-            <CategoryAxis prefHeight="25.0" prefWidth="794.0" side="BOTTOM" />
+            <CategoryAxis prefHeight="25.0" prefWidth="794.0" side="BOTTOM" fx:id="xAxis" />
          </xAxis>
          <yAxis>
-            <NumberAxis fx:id="numberOfCategories" side="LEFT" tickLabelFill="#1e1515" tickLength="5.0">
+            <NumberAxis fx:id="yAxis" side="LEFT" tickLabelFill="#1e1515" tickLength="5.0">
                <tickLabelFont>
                   <Font size="13.0" />
                </tickLabelFont>

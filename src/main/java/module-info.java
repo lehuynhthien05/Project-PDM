@@ -16,6 +16,7 @@ module com.example.parkingbookingsystems {
     requires transitive fontawesomefx;
     requires jBCrypt;
 
+
     opens com.example.parkingbookingsystems to javafx.fxml;
     exports com.example.parkingbookingsystems;
     exports com.example.parkingbookingsystems.ResetPassword;
