@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems.controller;
+package com.example.parkingbookingsystems;
 
 public class BookingSession {
     private static int bookingId;

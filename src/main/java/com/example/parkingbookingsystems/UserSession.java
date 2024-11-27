@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems.Controller;
+package com.example.parkingbookingsystems;
 
 public class UserSession {
     public static int currentUserId = 0;

@@ -1,6 +1,5 @@
-package com.example.parkingbookingsystems.Controller;
+package com.example.parkingbookingsystems;
 
-import com.example.parkingbookingsystems.AdminController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +29,9 @@ public class LoginController {
     private PasswordField password;
 
     @FXML
+    private Button close;
+
+    @FXML
     private Button register_btn;
 
     @FXML
@@ -43,29 +45,26 @@ public class LoginController {
         System.exit(0);
     }
 
+    private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
     private double x = 0;
     private double y = 0;
-
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
 
     @FXML
     public void logAdmin() throws SQLException {
         String sql = "SELECT * FROM admin WHERE username = ?";
 
         Database db = new Database();
-        Connection connect = db.connectdb();
+
+        connect = db.connectdb();
 
         try {
             if (connect != null) {
-                PreparedStatement prepare = connect.prepareStatement(sql);
+                prepare = connect.prepareStatement(sql);
                 prepare.setString(1, username.getText());
 
-                ResultSet result = prepare.executeQuery();
+                result = prepare.executeQuery();
 
                 if (username.getText().isEmpty() || password.getText().isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -76,13 +75,6 @@ public class LoginController {
                     if (result.next()) {
                         String hashed = result.getString("password");
                         if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
-
-                            // Set the first name and last name based on the user_id
-                            this.firstName = result.getString("firstName");
-                            this.lastName = result.getString("lastName");
-                            this.email = result.getString("email");
-                            this.phoneNumber = result.getString("phoneNumber");
-
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setContentText("Login successful");
@@ -91,17 +83,7 @@ public class LoginController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
-                                    Parent root = loader.load();
-
-                                    AdminController controller = loader.getController();
-
-                                    // Set the username display in the new controller
-                                    controller.setFirstName(this.firstName);
-                                    controller.setLastName(this.lastName);
-                                    controller.setEmail(this.email);
-                                    controller.setPhone(this.phoneNumber);
-                                    controller.setUsernameDisplayAdmin();
+                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
 
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
@@ -145,14 +127,19 @@ public class LoginController {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (result != null) result.close();
-            if (prepare != null) prepare.close();
-            if (connect != null) connect.close();
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                if (connect != null) connect.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void returnToChoose() {
         try {
+
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/Choose.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();

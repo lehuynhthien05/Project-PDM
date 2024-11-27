@@ -1,6 +1,5 @@
-package com.example.parkingbookingsystems.controller;
+package com.example.parkingbookingsystems;
 
-import com.example.parkingbookingsystems.Database;
 import com.example.parkingbookingsystems.email.EmailUtils;
 import com.example.parkingbookingsystems.phone.PhoneUtils;
 import javafx.fxml.FXML;
