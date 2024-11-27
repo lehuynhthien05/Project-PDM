@@ -21,17 +21,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.controller.UserInterface">
    <children>
-      <VBox fx:id="userbar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="252.0" styleClass="sidebar" stylesheets="@stylesheet.css">
+      <VBox fx:id="userbar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="252.0" styleClass="sidebar" stylesheets="@../css/stylesheet.css">
          <children>
             <ImageView fitHeight="120.0" fitWidth="140.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../image/user_icon.png" />
+                  <Image url="@../../../../image/user_icon.png" />
                </image>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="nameUser" contentDisplay="RIGHT" mnemonicParsing="false" styleClass="sidebar-user-btn" stylesheets="@stylesheet.css" text="What's your name?">
+            <Button fx:id="nameUser" contentDisplay="RIGHT" mnemonicParsing="false" styleClass="sidebar-user-btn" stylesheets="@../css/stylesheet.css" text="What's your name?">
                <font>
                   <Font name="Calibri" size="15.0" />
                </font>
@@ -155,7 +155,7 @@
             <VBox prefHeight="660.0" prefWidth="10.0" />
          </children>
       </VBox>
-      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@stylesheet.css" visible="true">
+      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/stylesheet.css" visible="true">
          <children>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
@@ -253,9 +253,9 @@
             </AnchorPane>
          </children>
       </VBox>
-      <VBox fx:id="pickSlot" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@Pickslot.css" visible="false">
+      <VBox fx:id="pickSlot" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@../css/Pickslot.css" visible="false">
          <children>
-            <AnchorPane prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;" stylesheets="@Pickslot.css">
+            <AnchorPane prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;" stylesheets="@../css/Pickslot.css">
                <children>
                   <Text layoutX="23.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOK YOUR SLOT">
                      <font>
@@ -293,9 +293,9 @@
 <!--                  </Button>-->
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="300.0" prefWidth="700.0" stylesheets="@Pickslot.css">
+            <AnchorPane prefHeight="300.0" prefWidth="700.0" stylesheets="@../css/Pickslot.css">
                <children>
-                  <AnchorPane fx:id="parkingSlot" layoutX="59.0" layoutY="22.0" prefHeight="307.0" prefWidth="727.0" style="-fx-background-color: WHITE;" stylesheets="@Pickslot.css">
+                  <AnchorPane fx:id="parkingSlot" layoutX="59.0" layoutY="22.0" prefHeight="307.0" prefWidth="727.0" style="-fx-background-color: WHITE;" stylesheets="@../css/Pickslot.css">
                      <children>
                         <Text fill="#8a8989" layoutX="115.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PARKING A">
                            <font>
@@ -436,7 +436,7 @@
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="bookingSlot" layoutX="712.0" layoutY="48.0" mnemonicParsing="false" onAction="#BookedBtn" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #439da1;" stylesheets="@Pickslot.css" text="BOOK" textFill="WHITE">
+                  <Button fx:id="bookingSlot" layoutX="712.0" layoutY="48.0" mnemonicParsing="false" onAction="#BookedBtn" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #439da1;" stylesheets="@../css/Pickslot.css" text="BOOK" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
@@ -455,7 +455,7 @@
       </VBox>
       <VBox fx:id="profileArea" layoutX="250.2928924560547" visible="false">
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #fff;" stylesheets="@UserProfile.css">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #fff;" stylesheets="@../css/UserProfile.css">
                <children>
                   <Text layoutX="39.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Profile ">
                      <font>
@@ -518,12 +518,12 @@
                         <Font size="20.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="changePass" layoutX="194.0" layoutY="438.0" mnemonicParsing="false" onAction="#openChangePass" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="Change password" textFill="#151515">
+                  <Button fx:id="changePass" layoutX="194.0" layoutY="438.0" mnemonicParsing="false" onAction="#openChangePass" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@../css/UserProfile.css" text="Change password" textFill="#151515">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="saveInfor" layoutX="356.0" layoutY="438.0" mnemonicParsing="false" onAction="#save" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="save" textFill="#151515">
+                  <Button fx:id="saveInfor" layoutX="356.0" layoutY="438.0" mnemonicParsing="false" onAction="#save" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@../css/UserProfile.css" text="save" textFill="#151515">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -550,7 +550,7 @@
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Text>
-                        <Button fx:id="updatePassBtn" layoutX="288.0" layoutY="334.0" mnemonicParsing="false" onAction="#updatePassword" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@UserProfile.css" text="Update password" textFill="#151515">
+                        <Button fx:id="updatePassBtn" layoutX="288.0" layoutY="334.0" mnemonicParsing="false" onAction="#updatePassword" prefHeight="22.0" prefWidth="153.0" style="-fx-background-color: #d1d9e0; -fx-background-radius: 7px;" styleClass="clicked" stylesheets="@../css/UserProfile.css" text="Update password" textFill="#151515">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -594,17 +594,17 @@
                               </Text>
                               <ImageView fitHeight="102.0" fitWidth="106.0" layoutX="202.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../image/visa (1).png" />
+                                    <Image url="@../../../../image/visa (1).png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="199.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../image/paypal (1).png" />
+                                    <Image url="@../../../../image/paypal (1).png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="78.0" fitWidth="77.0" layoutX="202.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/atm-card.png" />
+                                    <Image url="@../../../../image/atm-card.png" />
                                  </image>
                               </ImageView>
                               <TextField fx:id="cardNumber" layoutX="14.0" layoutY="105.0" prefHeight="27.0" prefWidth="335.0" promptText="Ex: 0935632..." style="-fx-background-color: WHITE; -fx-background-radius: 10;" />

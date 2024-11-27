@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.controller.RegisterAdminController">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #3a4558;" styleClass="hyperlink" stylesheets="@LoginAdmin.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #3a4558;" styleClass="hyperlink" stylesheets="@../css/LoginAdmin.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="194.0" fitWidth="194.0" layoutX="78.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -119,7 +119,7 @@ public class LoginUserController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/ContentAreaAndUser.fxml"));
                                     Parent root = loader.load();
 
                                     UserInterface controller = loader.getController();
@@ -177,7 +177,7 @@ public class LoginUserController {
 
     public void registerButton() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/RegisterUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/RegisterUser.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
@@ -201,7 +201,7 @@ public class LoginUserController {
 
     public void returnToChoose(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/Choose.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/Choose.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 

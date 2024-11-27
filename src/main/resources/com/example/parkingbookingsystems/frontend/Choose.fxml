@@ -53,7 +53,7 @@
       </Text>
       <ImageView fitHeight="79.0" fitWidth="76.0" layoutX="162.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/car.png" />
+            <Image url="@../../../../image/car.png" />
          </image>
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="119.0" layoutY="170.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #87CEEB;" />

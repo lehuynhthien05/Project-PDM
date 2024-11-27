@@ -69,7 +69,7 @@ public class RegisterUserController {
             Stage stage = (Stage) loginbtn.getScene().getWindow();
             stage.close();
             Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/loginUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/loginUser.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -128,7 +128,7 @@ public class RegisterUserController {
 
                 // Open the login stage
                 Stage primaryStage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/loginUser.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/loginUser.fxml"));
                 primaryStage.initStyle(StageStyle.UNDECORATED);
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();

@@ -17,7 +17,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         SlotFileUtil.clearSelectedSlotsFile();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/parkingbookingsystems/Choose.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/parkingbookingsystems/frontend/Choose.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
 
