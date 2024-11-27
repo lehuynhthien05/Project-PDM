@@ -2,6 +2,7 @@ package com.example.parkingbookingsystems.controller;
 
 import com.example.parkingbookingsystems.Database;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -57,7 +58,6 @@ public class LoginController {
         String sql = "SELECT * FROM admin WHERE username = ?";
 
         Database db = new Database();
-
         connect = db.connectdb();
 
         try {
@@ -75,7 +75,10 @@ public class LoginController {
                 } else {
                     if (result.next()) {
                         String hashed = result.getString("password");
-                        if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
+                        if (PasswordUtils.verifyPassword(password.getText(), hashed)) {
+
+                            String loginUsername = result.getString("username");
+
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setContentText("Login successful");
@@ -84,8 +87,16 @@ public class LoginController {
                             loginBtn.getScene().getWindow().hide();
                             Platform.runLater(() -> {
                                 try {
-                                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
 
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
+                                    Parent root = loader.load();
+
+                                    AdminController controller = loader.getController();
+
+                                    //Pass the username to the UserInterface controller
+                                    controller.setLoginUsername(loginUsername);
+                                    controller.setUsernameDisplay();
+                                    controller.loadUserInfo();
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
 
@@ -138,24 +149,6 @@ public class LoginController {
         }
     }
 
-    public void returnToChoose() {
-        try {
-
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/Choose.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
-
-            Stage currentStage = (Stage) returnchoose.getScene().getWindow();
-            currentStage.hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void registerButton() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/RegisterAdmin.fxml"));
@@ -167,6 +160,23 @@ public class LoginController {
             stage.show();
 
             Stage currentStage = (Stage) register_btn.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void returnToChoose(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/Choose.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage currentStage = (Stage) returnchoose.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
