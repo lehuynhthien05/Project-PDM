@@ -17,7 +17,6 @@ public class Database {
         ds.setPortNumber(1433);
         ds.setDatabaseName("ParkingBookingSystem");
 
-
         ds.setTrustServerCertificate(true);
         try {
             connect = ds.getConnection();

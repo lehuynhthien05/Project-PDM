@@ -14,6 +14,7 @@ module com.example.parkingbookingsystems {
     requires mssql.jdbc;
     requires transitive mysql.connector.j;
     requires transitive fontawesomefx;
+    requires jBCrypt;
 
     opens com.example.parkingbookingsystems to javafx.fxml;
     exports com.example.parkingbookingsystems;
