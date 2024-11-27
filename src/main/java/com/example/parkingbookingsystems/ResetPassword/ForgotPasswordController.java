@@ -1,6 +1,6 @@
 package com.example.parkingbookingsystems.ResetPassword;
 
-import com.example.parkingbookingsystems.Database;
+import com.example.parkingbookingsystems.controller.Database;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

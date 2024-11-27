@@ -20,4 +20,6 @@ module com.example.parkingbookingsystems {
     exports com.example.parkingbookingsystems;
     exports com.example.parkingbookingsystems.ResetPassword;
     opens com.example.parkingbookingsystems.ResetPassword to javafx.fxml;
+    exports com.example.parkingbookingsystems.controller;
+    opens com.example.parkingbookingsystems.controller to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.controller;
 
 import com.example.parkingbookingsystems.security.PasswordUtils;
 import javafx.scene.control.*;
@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import com.example.parkingbookingsystems.email.EmailUtils;
 import com.example.parkingbookingsystems.phone.PhoneUtils;
 import javafx.fxml.FXML;
-import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

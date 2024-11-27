@@ -1,5 +1,4 @@
-package com.example.parkingbookingsystems;
-import com.example.parkingbookingsystems.SlotFileUtil.SlotFileUtil;
+package com.example.parkingbookingsystems.controller;
 import com.example.parkingbookingsystems.email.EmailUtils;
 import com.example.parkingbookingsystems.phone.PhoneUtils;
 import com.example.parkingbookingsystems.security.PasswordUtils;

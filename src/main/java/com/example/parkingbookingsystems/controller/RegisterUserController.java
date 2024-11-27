@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.controller;
 
 import com.example.parkingbookingsystems.email.EmailUtils;
 import com.example.parkingbookingsystems.phone.PhoneUtils;
@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ import com.example.parkingbookingsystems.security.PasswordUtils;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class RegisterAdminController {
+public class RegisterUserController {
 
     @FXML
     private TextField register_email;
@@ -62,12 +63,12 @@ public class RegisterAdminController {
     private PreparedStatement prepare;
     private ResultSet result;
 
-    public void returnAdminLogin() {
+    public void returnUserLogin() {
         try {
             Stage stage = (Stage) loginbtn.getScene().getWindow();
             stage.close();
             Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/LoginAdmin.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/loginUser.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -97,7 +98,7 @@ public class RegisterAdminController {
             alert.setContentText("Please fill all the fields");
             alert.showAndWait();
         } else {
-            String sql = "INSERT INTO admin (username, password, firstName, lastName, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO [User] (username, password, firstName, lastName, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
             connect = Database.connectdb();
 
             try {
@@ -120,7 +121,18 @@ public class RegisterAdminController {
                 alert.setContentText("Registration Successful");
                 alert.showAndWait();
 
-            } catch (SQLException e) {
+                // Close the current stage
+                Stage currentStage = (Stage) register_btn.getScene().getWindow();
+                currentStage.close();
+
+                // Open the login stage
+                Stage primaryStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/loginUser.fxml"));
+                primaryStage.initStyle(StageStyle.UNDECORATED);
+                primaryStage.setScene(new Scene(root));
+                primaryStage.show();
+
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             } finally {
                 try {

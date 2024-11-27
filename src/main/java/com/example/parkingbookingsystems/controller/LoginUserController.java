@@ -1,4 +1,4 @@
-package com.example.parkingbookingsystems;
+package com.example.parkingbookingsystems.controller;
 
 import com.example.parkingbookingsystems.security.PasswordUtils;
 import javafx.application.Platform;
