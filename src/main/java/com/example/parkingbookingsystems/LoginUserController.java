@@ -48,7 +48,7 @@ public class LoginUserController {
     private double x = 0;
     private double y = 0;
 
-//    private String firstName;
+    //    private String firstName;
 //    private String lastName;
     private int currentUserId;
 
@@ -104,17 +104,11 @@ public class LoginUserController {
                 } else {
                     if (result.next()) {
                         String hashed = result.getString("password");
-                        if (PasswordUtils.hashPassword(password.getText()).equals(hashed)) {
+                        if (PasswordUtils.verifyPassword(password.getText() , hashed)) {
 
-                            int userId = result.getInt("user_id");
-                            this.currentUserId = userId;
-//
-//                            // Set the first name and last name based on the user_id
-//                            this.firstName = result.getString("firstName");
-//                            this.lastName = result.getString("lastName");
 
                             String loginUsername = result.getString("username");
-
+                            UserSession.setCurrentUserId(result.getInt("user_id"));
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setHeaderText(null);
                             alert.setContentText("Login successful");
@@ -127,12 +121,13 @@ public class LoginUserController {
                                     Parent root = loader.load();
 
                                     UserInterface controller = loader.getController();
-                                    UserSession.setCurrentUserId(userId);
 
                                     //Pass the username to the UserInterface controller
                                     controller.setLoginUsername(loginUsername);
-
                                     controller.setUsernameDisplay();
+                                    controller.loadUserInfo();
+
+//                                    controller.setUsernameDisplay();
 
 
                                     Scene scene = new Scene(root);

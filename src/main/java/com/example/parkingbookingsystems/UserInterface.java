@@ -1,9 +1,11 @@
 package com.example.parkingbookingsystems;
 import com.example.parkingbookingsystems.SlotFileUtil.SlotFileUtil;
+import com.example.parkingbookingsystems.email.EmailUtils;
+import com.example.parkingbookingsystems.phone.PhoneUtils;
+import com.example.parkingbookingsystems.security.PasswordUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,12 +18,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import com.example.parkingbookingsystems.BookingSession;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -30,20 +30,51 @@ public class UserInterface {
     private String loginUsername;
 
 
+//    @FXML
+//    private Button booking_returnbtn;
+
     @FXML
-    private Button booking_returnbtn;
+    private AnchorPane paymentAndBill;
 
     @FXML
     private Text selectedSlotName;
 
+
+
     @FXML
     private Button backToBooking;
+
+    @FXML
+    private AnchorPane paymentCheck;
 
     @FXML
     private HBox home;
 
     @FXML
     private HBox Booking;
+
+    @FXML
+    private VBox profileArea;
+
+    @FXML
+    private VBox contentHome;
+
+    @FXML
+    private VBox pickSlot;
+
+
+
+    public void switchPage(VBox targetPage) {
+        // Hide all pages
+        profileArea.setVisible(false);
+        contentHome.setVisible(false);
+        pickSlot.setVisible(false);
+        paymentAndBill.setVisible(false);
+        // Show the target page
+        targetPage.setVisible(true);
+    }
+
+
 
     @FXML
     public void close(ActionEvent event) {
@@ -55,23 +86,14 @@ public class UserInterface {
     }
 
     @FXML
-    private Text usernameDisplay;
+    private Button nameUser;
 
-    public void setUsernameDisplay(String username) {
-        usernameDisplay.setText(username);
-    }
+
 
     private String firstName;
     private String lastName;
     private Stage homeStage;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public void setUsernameDisplay() {
         String sql = "SELECT * FROM [User] WHERE username = ?";
@@ -84,7 +106,7 @@ public class UserInterface {
                 if (result.next()) {
                     firstName = result.getString("firstName");
                     lastName = result.getString("lastName");
-                    usernameDisplay.setText(lastName + " " + firstName);
+                    nameUser.setText(lastName + " " + firstName);
 
                 } else {
                     System.out.println("No user found.");
@@ -97,65 +119,185 @@ public class UserInterface {
 
 
     public void UserProfile() {
-        try {
+        switchPage(profileArea);
+    }
+
+    @FXML
+    private Label userEmail;
+    @FXML
+    private TextField firstNameUser;
+    @FXML
+    private TextField lastNameUser;
+    @FXML
+    private Label userPhone;
+    @FXML
+    private Label userName;
+    @FXML
+    private Button close;
+    @FXML
+    private Button saveInfor;
+    @FXML
+    private AnchorPane passChange;
+
+
+    @FXML
+    private PasswordField oldPassWord;
+
+    @FXML
+    private PasswordField newPassword;
+
+    @FXML
+    private PasswordField comfirmPassword;
+    @FXML
+    private Button updatePassBtn;
+
+    private void showAlert(Alert.AlertType type, String content) {
+        Alert alert = new Alert(type);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+
+    }
+
+    public void updatePassword() {
+        // Validate user input
+        if (oldPassWord.getText().isEmpty() || newPassword.getText().isEmpty() || comfirmPassword.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Please fill in all fields.");
+            return;
+        }
+
+        if (!newPassword.getText().equals(comfirmPassword.getText())) {
+            showAlert(Alert.AlertType.ERROR, "New password and confirm password do not match.");
+            return;
+        }
 
 
 
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndUserProfile.fxml"));
-            Parent root = loader.load();
+        String sql = "SELECT password FROM [User] WHERE username = ?";
+
+        try (Connection connect = Database.connectdb();
+             PreparedStatement prepare = connect.prepareStatement(sql)) {
+
+            // Check if the old password matches the stored password
+            prepare.setString(1, this.loginUsername);
+            try (ResultSet result = prepare.executeQuery()) {
+                if (result.next()) {
+                    String hashedPassword = result.getString("password");
+                    if (!PasswordUtils.verifyPassword(oldPassWord.getText(), hashedPassword)) {
+                        showAlert(Alert.AlertType.ERROR, "Old password is incorrect.");
+                        return;
+                    }
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "User not found.");
+                    return;
+                }
+            }
+
+            // Hash the new password
+            String newHashedPassword = PasswordUtils.hashPassword(newPassword.getText());
+
+            // Update the password in the database
+            String updateSql = "UPDATE [User] SET password = ? WHERE username = ?";
+            try (PreparedStatement updatePrepare = connect.prepareStatement(updateSql)) {
+                updatePrepare.setString(1, newHashedPassword);
+                updatePrepare.setString(2, this.loginUsername);
+
+                int rowsAffected = updatePrepare.executeUpdate();
+                if (rowsAffected > 0) {
+                    showAlert(Alert.AlertType.INFORMATION, "Password updated successfully.");
+                    // Clear the fields
+                    oldPassWord.clear();
+                    newPassword.clear();
+                    comfirmPassword.clear();
+                    passChange.setVisible(false);
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Failed to update password.");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "An error occurred while updating the password.");
+        }
+    }
 
 
-            // Pass the username to the AdjustUserInfo controller
-            AdjustUserInfo controller = loader.getController();
-            controller.setUsername(loginUsername);
-            controller.loadUserInfo();
 
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (Exception e) {
+    public void openChangePass() {passChange.setVisible(true);}
+
+    public void loadUserInfo() {
+        String sql = "SELECT * FROM [User] WHERE username = ?";
+        try (Connection connect = Database.connectdb();
+             PreparedStatement prepare = connect.prepareStatement(sql)) {
+
+            prepare.setString(1, this.loginUsername);
+
+            try (ResultSet result = prepare.executeQuery()) {
+                if (result.next()) {
+                    userName.setText(result.getString("username"));
+                    firstNameUser.setText(result.getString("firstName"));
+                    lastNameUser.setText(result.getString("lastName"));
+                    userEmail.setText(result.getString("email"));
+                    userPhone.setText(result.getString("phoneNumber"));
+                } else {
+                    System.out.println("No user found.");
+                }
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void Home() {
-        try {
-            homeStage = (Stage) home.getScene().getWindow();
-            homeStage.hide();
+    public void save() {
+        if (!validateInput()) return;
 
+        String sql = "UPDATE [User] SET username = ?, firstName = ?, lastName = ?, email = ?, phoneNumber = ? WHERE username = ?";
+        try (Connection connect = Database.connectdb();
+             PreparedStatement prepare = connect.prepareStatement(sql)) {
 
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
-            Parent root = loader.load();
+            prepare.setString(1, userName.getText());
+            prepare.setString(2, firstNameUser.getText());
+            prepare.setString(3, lastNameUser.getText());
+            prepare.setString(4, userEmail.getText());
+            prepare.setString(5, userPhone.getText());
+            prepare.setString(6, this.loginUsername);
 
+            int rowsAffected = prepare.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Save Successful");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "No user found to update.");
+            }
 
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Failed to save data. Please try again.");
         }
+    }
+
+    private boolean validateInput() {
+        if (userEmail.getText().isEmpty() || userName.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Please fill all the fields");
+            return false;
+        }
+        if (!EmailUtils.isValidEmail(userEmail.getText())) {
+            showAlert(Alert.AlertType.ERROR, "Please enter a valid email address");
+            return false;
+        }
+        if (!PhoneUtils.isValidPhoneNumber(userPhone.getText())) {
+            showAlert(Alert.AlertType.ERROR, "Please enter a valid 10-digit phone number");
+            return false;
+        }
+        return true;
+    }
+
+    public void Home() {
+        switchPage(contentHome);
     }
 
     //Booking Interface
     public void Booking() {
-        try {
-            // Hide the ContentAreaAndUserProfile screen
-            Stage contentAreaStage = (Stage) Booking.getScene().getWindow();
-            contentAreaStage.hide();
-
-            // Open the booking stage
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPickslot.fxml"));
-
-            Parent root = loader.load();
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        switchPage(pickSlot);
     }
 
     private Set<String> selectedSlots = new HashSet<>();
@@ -183,11 +325,11 @@ public class UserInterface {
 
 
     @FXML
-    private DatePicker bookingDate;
+    private DatePicker entryDate;
 
     @FXML
     private void handleDateSelection() {
-        LocalDate selectedDate = bookingDate.getValue();
+        LocalDate selectedDate = entryDate.getValue();
         if (selectedDate != null) {
             DateSession.setSelectedDate(selectedDate.toString());
         } else {
@@ -201,16 +343,16 @@ public class UserInterface {
     }
 
     @FXML
-    private DatePicker endTime;
+    private DatePicker existDate;
 
     @FXML
     private void handleDateSelectionExit() {
-        LocalDate selectedDate = endTime
+        LocalDate selectedDate = existDate
                 .getValue();
         if (selectedDate != null) {
             DateEndSession.setSelectedDate(selectedDate.toString());
         } else {
-            System.out.println("No date selected");
+            System.out.println();
         }
     }
 
@@ -233,7 +375,7 @@ public class UserInterface {
             totalPrice -= 100; // Subtract 100 from total cost
         } else {
             if (selectedSlots.size() < 1) {
-                // Select the slot
+                // Select the slot1
                 selectedSlots.add(slotName);
                 source.getStyleClass().remove("rectangle-available");
                 source.getStyleClass().add("rectangle-selected");
@@ -255,10 +397,6 @@ public class UserInterface {
 
 
 
-//    public void setUsernameDisplay() {
-//        usernameDisplay.setText(lastName + " " + firstName);
-//    }
-
 
     @FXML
     private Text priceOrder;
@@ -268,6 +406,9 @@ public class UserInterface {
 
     @FXML
     private Text totalSlot_Payment;
+
+    @FXML
+    private Text SlotName;
 
     private int totalPrice;
 
@@ -296,6 +437,10 @@ public class UserInterface {
         selectedSlotName.setText(String.join(", ", selectedSlots));
     }
 
+    //Update SelectedSlotName
+    public void updateSlotNameInPayment() {
+        SlotName.setText(String.join(", ", selectedSlots));
+    }
     private void writeSelectedSlotsToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("selectedSlots.txt", true))) {
             for (String slot : selectedSlots) {
@@ -338,6 +483,7 @@ public class UserInterface {
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
+
 
     private void executeSQLCommandBooking() {
         String sql = "INSERT INTO [Booking] (user_id, parkingArea_id, startTime, endTime, totalCost, status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -398,81 +544,35 @@ public class UserInterface {
             try {
                 // Execute the SQL command
                 executeSQLCommandBooking();
+                paymentCheck.setVisible(false);
+                Payment();
 
-                Stage primaryStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPayment.fxml"));
-                Parent root = loader.load();
+                updateSelectedSlotName();
+                setTotalPrice(100); // Set total price to 100
 
-                // Get the controller of the payment interface
-                UserInterface paymentController = loader.getController();
-                paymentController.setSelectedSlots(selectedSlots);
-                paymentController.setTotalPrice(100); // Set total price to 100
-                paymentController.updateSelectedSlotName();
-
-                // Update the style of selected slots
-                updateSelectedSlotsStyle();
 
                 // Write selected slots to file
                 writeSelectedSlotsToFile();
 
-                // Clear the selected slots and update the UI
-                selectedSlots.clear();
+
                 refreshSlotInfo();
 
-                // Close the current stage
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                currentStage.close();
 
-                primaryStage.initStyle(StageStyle.UNDECORATED);
-                primaryStage.setScene(new Scene(root));
-                primaryStage.show();
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void Booking_ReturnBtn() {
-        try {
-            Stage contentAreaStage = (Stage) booking_returnbtn.getScene().getWindow();
-            contentAreaStage.hide();
 
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/ContentAreaAndUser.fxml"));
-            Parent root = loader.load();
-
-            UserInterface controller = loader.getController();
-
-            // Set the username display in the new controller
-            controller.setLoginUsername(this.loginUsername);
-            controller.setUsernameDisplay();
-
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
+    @FXML
+    private VBox paymentAndBill;
 
     //Payment Interface
     public void Payment() {
-        try {
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPayment.fxml"));
-            Parent root = loader.load();
-
-
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        switchPage(paymentAndBill);
     }
 
     @FXML
@@ -520,15 +620,12 @@ public class UserInterface {
                 successAlert.setContentText("Your payment has been processed successfully.");
                 successAlert.showAndWait();
 
-                // Open the booking stage
+                // Update the style of selected slots
+                updateSelectedSlotsStyle();
 
-                Stage primaryStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/paymentCheck .fxml"));
-                Parent root = loader.load();
+                paymentCheck.setVisible(true);
 
-                primaryStage.initStyle(StageStyle.UNDECORATED);
-                primaryStage.setScene(new Scene(root));
-                primaryStage.show();
+
             } else {
                 // Show error message if any value is missing
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -541,36 +638,30 @@ public class UserInterface {
     }
 
 
-
     @FXML
-    private VBox pickSlot;
+    private Button continueBooking;
 
 
     public void ContinueBooking() {
-        updateSelectedSlotsStyle();
         try {
-            // Load selected slots from file
-            selectedSlots = SlotFileUtil.loadSelectedSlotsFromFile();
+            // Hide the Payment screen
+            paymentCheck.setVisible(false);
 
-            // Open the booking stage
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPickslot.fxml"));
-            Parent root = loader.load();
+            // Switch to the pickSlot page
+            switchPage(pickSlot);
 
-            // Get the controller of the booking interface
-            UserInterface bookingController = loader.getController();
-            bookingController.setSelectedSlots(selectedSlots);
-            bookingController.updateSelectedSlotName();
-            bookingController.updateSelectedSlotsStyle();
+            // Clear the selected slots and update the UI
+            selectedSlots.clear();
 
             // Reset the count of booked slots
             selectedSlots.clear();
-            bookingController.updateSelectedSlotName();
-            bookingController.updateSelectedSlotsStyle();
 
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+            // Clear the selected date
+            existDate.setValue(null);
+            DateEndSession.setSelectedDate(null);
+            entryDate.setValue(null);
+            DateSession.setSelectedDate(null);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -586,6 +677,15 @@ public class UserInterface {
         }
     }
 
+    private void updateDeselectedSlotsStyle() {
+        for (String slotId : selectedSlots) {
+            Node slot = pickSlot.lookup("#" + slotId);
+            if (slot != null) {
+                slot.getStyleClass().remove("rectangle-booked");
+                slot.getStyleClass().add("rectangle-available");
+            }
+        }
+    }
     private void deleteLatestBooking() {
         String sql = "DELETE FROM Booking WHERE booking_id = (SELECT MAX(booking_id) FROM Booking)";
 
@@ -597,20 +697,16 @@ public class UserInterface {
         }
     }
 
+    @FXML
+    private Button cancelPayment;
+
     public void ReturnBooking() {
         try {
-            Stage contentAreaStage = (Stage) backToBooking.getScene().getWindow();
-            contentAreaStage.hide();
-
+            // Clear the selected slots and reset their styles
             deleteLatestBooking();
+            updateDeselectedSlotsStyle();
 
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/contentAndPickslot.fxml"));
-            Parent root = loader.load();
-
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+            switchPage(pickSlot);
         } catch (Exception e) {
             e.printStackTrace();
         }
