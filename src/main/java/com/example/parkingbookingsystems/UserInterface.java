@@ -34,7 +34,7 @@ public class UserInterface {
 //    private Button booking_returnbtn;
 
     @FXML
-    private AnchorPane paymentAndBill;
+    private VBox paymentAndBill;
 
     @FXML
     private Text selectedSlotName;
@@ -567,8 +567,6 @@ public class UserInterface {
     }
 
 
-    @FXML
-    private VBox paymentAndBill;
 
     //Payment Interface
     public void Payment() {
