@@ -315,7 +315,7 @@ public class AdminController {
 
 
     @FXML
-    private TableView<BookingUser> tableView;
+    private TableView<BookingUser> userTableView;
 
     @FXML
     private TableColumn<BookingUser, Integer> bookingIdColumn;
@@ -351,12 +351,13 @@ public class AdminController {
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         phoneNumberUsers.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
-        tableView.setItems(bookingUserService.getBookingUserData());
+        userTableView.setItems(bookingUserService.getBookingUserData());
     }
 
 
 
     public void Analytics() {
+        initialize();
         switchPage(analyticsBar);
     }
 
@@ -422,6 +423,59 @@ public class AdminController {
     }
     public void Parkinglot() {
         switchPage(parkingLotOverviewPage);
+        parkingOverView();
+    }
+
+
+    @FXML
+    private TableColumn<Parking, String> adminIdColumn; //comment
+
+    @FXML
+    private TableColumn<Parking, String> parkingIdColumn;
+
+    @FXML
+    private TableColumn<Parking, String> parkingLocationColumn;
+
+    @FXML
+    private TableColumn<Parking, String> parkingNameColumn;
+
+    @FXML
+    private TableColumn<Parking, String> parkingStatusColumn;
+
+
+    @FXML
+    private TableView<Parking> tableView;
+
+    private ParkingService parkingService = new ParkingService();
+
+    @FXML
+    public void parkingOverView() {
+        parkingIdColumn.setCellValueFactory(new PropertyValueFactory<>("parkingId"));
+        parkingNameColumn.setCellValueFactory(new PropertyValueFactory<>("parkingName"));
+        parkingStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        parkingLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        adminIdColumn.setCellValueFactory(new PropertyValueFactory<>("adminId"));
+
+        tableView.setItems(parkingService.getBookingUserData());
+    }
+
+    public void returnToHome() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/AdminProfile.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage currentStage = (Stage) returnHome.getScene().getWindow();
+            currentStage.hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
