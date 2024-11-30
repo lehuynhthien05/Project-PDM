@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="admiPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" fx:controller="com.example.parkingbookingsystems.controller.AdminController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="admiPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parkingbookingsystems.controller.AdminController">
    <children>
       <VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@../css/stylesheet.css">
          <children>
@@ -55,7 +55,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <HBox fx:id="adminProfile" onMouseClicked="#AdminProfile"   alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+            <HBox fx:id="adminProfile" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#AdminProfile" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -71,7 +71,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="usersInfor" onMouseClicked="#User" alignment="CENTER_LEFT" layoutX="10.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+            <HBox fx:id="usersInfor" alignment="CENTER_LEFT" layoutX="10.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#User" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -90,7 +90,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="analytic" onMouseClicked="#Analytics" alignment="CENTER_LEFT" layoutX="10.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+            <HBox fx:id="analytic" alignment="CENTER_LEFT" layoutX="10.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Analytics" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -109,7 +109,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="overview" onMouseClicked="#Parkinglot" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
+            <HBox fx:id="overview" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Parkinglot" prefHeight="45.0" prefWidth="250.0" style="-fx-cursor: hand;" styleClass="sidebar-btn">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -131,7 +131,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="signOutAdmin" onMouseClicked="#SignOut" alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="252.0" style="-fx-border-color: red; -fx-cursor: hand;" styleClass="sidebar-btn">
+            <HBox fx:id="signOutAdmin" alignment="CENTER_LEFT" onMouseClicked="#SignOut" prefHeight="49.0" prefWidth="252.0" style="-fx-border-color: red; -fx-cursor: hand;" styleClass="sidebar-btn">
                <padding>
                   <Insets left="40.0" />
                </padding>
@@ -374,7 +374,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <TableView fx:id="userTableView" layoutY="75.0"  prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
+                  <TableView fx:id="userTableView" layoutY="75.0" prefHeight="488.0" prefWidth="850.0" style="-fx-background-color: #C5CDDA; -fx-cursor: hand;" styleClass="table-column-header">
                      <columns>
                         <TableColumn fx:id="bookingIdColumn" prefWidth="57.0" text="ID" />
                         <TableColumn fx:id="firstNameColumn" prefWidth="198.0" style="-fx-border-color: BLACK;" text="First Name" />
@@ -396,7 +396,7 @@
       </VBox>
       <VBox fx:id="analyticsBar" layoutX="250.60000610351562" visible="false">
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@../css/stylesheet.css" >
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6;" stylesheets="@../css/stylesheet.css">
                <children>
                   <HBox fx:id="headerAnalytic" prefHeight="63.0" prefWidth="849.0" style="-fx-background-color: #556C92;" AnchorPane.rightAnchor="0.7999999999999545">
                      <children>
@@ -427,27 +427,6 @@
                            </font>
                         </Button>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="nameAdmin" style="-fx-text-fill: WHITE;" text="Le Huynh Thien">
-                                 <HBox.margin>
-                                    <Insets right="20.0" top="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Calibri" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <ImageView fx:id="adminImage" fitHeight="56.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../image/598d23ae-6ea7-4821-a638-be43704217e2.jpg" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </ImageView>
-                           </children>
                            <HBox.margin>
                               <Insets left="100.0" />
                            </HBox.margin>
@@ -535,9 +514,9 @@
                         <Font name="Calibri Bold" size="30.0" />
                      </font>
                   </Label>
-                  <BarChart fx:id="barChart" onMouseClicked="#initialize" layoutY="259.0" prefHeight="400.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6; -fx-alternative-column-fill-visible: TRUE; -fx-cursor: hand;" AnchorPane.bottomAnchor="-0.7999999999999545">
+                  <BarChart fx:id="barChart" layoutY="259.0" onMouseClicked="#initialize" prefHeight="400.0" prefWidth="850.0" style="-fx-background-color: #C8D6E6; -fx-alternative-column-fill-visible: TRUE; -fx-cursor: hand;" AnchorPane.bottomAnchor="-0.7999999999999545">
                      <xAxis>
-                        <CategoryAxis  fx:id="xAxis" prefHeight="25.0" prefWidth="794.0" side="BOTTOM" />
+                        <CategoryAxis prefHeight="25.0" prefWidth="794.0" side="BOTTOM" fx:id="xAxis" />
                      </xAxis>
                      <yAxis>
                         <NumberAxis fx:id="yAxis" side="LEFT" tickLabelFill="#1e1515" tickLength="5.0">

@@ -331,7 +331,7 @@ public class UserInterface {
         if (selectedDate != null) {
             DateSession.setSelectedDate(selectedDate.toString());
         } else {
-            System.out.println("No date selected");
+            System.out.println();
         }
     }
 
