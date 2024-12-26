@@ -99,51 +99,56 @@ public class RegisterAdminController {
             alert.setContentText("Please fill all the fields");
             alert.showAndWait();
         } else {
-            String sqlCredentials = "INSERT INTO admincredentials (username, password) VALUES (?, ?)";
-            String sqlAdmin = "INSERT INTO admin (firstName, lastName, email, phoneNumber) VALUES (?, ?, ?, ?)";
+            String sqlGetMaxId = "SELECT MAX(admin_id) FROM [Admin]";
+            String sqlAdmin = "INSERT INTO [Admin] (admin_id, firstName, lastName, email, phoneNumber) VALUES (?, ?, ?, ?, ?)";
+            String sqlCredentials = "INSERT INTO AdminCredentials (admin_id, username, password) VALUES (?, ?, ?)";
             connect = Database.connectdb();
 
             try {
-                // Insert into admincredentials table
-                prepare = connect.prepareStatement(sqlCredentials, PreparedStatement.RETURN_GENERATED_KEYS);
-                prepare.setString(1, register_username.getText());
+                // Get the current max id
+                prepare = connect.prepareStatement(sqlGetMaxId);
+                result = prepare.executeQuery();
+                int newId = 1;
+                if (result.next()) {
+                    newId = result.getInt(1) + 1;
+                }
 
-                // Hash the password
-                String hashedPassword = PasswordUtils.hashPassword(register_password.getText());
-                prepare.setString(2, hashedPassword);
+                // Insert into User table
+                prepare = connect.prepareStatement(sqlAdmin);
+                prepare.setInt(1, newId);
+                prepare.setString(2, register_firstname.getText());
+                prepare.setString(3, register_lastname.getText());
+                prepare.setString(4, register_email.getText());
+                prepare.setString(5, register_phone.getText());
 
                 prepare.executeUpdate();
 
-                // Retrieve the generated admin_id
-                ResultSet generatedKeys = prepare.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    int adminId = generatedKeys.getInt(1);
+                // Insert into UserCredentials table
+                prepare = connect.prepareStatement(sqlCredentials);
+                prepare.setInt(1, newId);
+                prepare.setString(2, register_username.getText());
 
-                    // Insert into admin table
-                    prepare = connect.prepareStatement(sqlAdmin);
-                    prepare.setString(1, register_firstname.getText());
-                    prepare.setString(2, register_lastname.getText());
-                    prepare.setString(3, register_email.getText());
-                    prepare.setString(4, register_phone.getText());
+                // Hash the password
+                String hashedPassword = PasswordUtils.hashPassword(register_password.getText());
+                prepare.setString(3, hashedPassword);
 
-                    prepare.executeUpdate();
+                prepare.executeUpdate();
 
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Registration Successful");
-                    alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Registration Successful");
+                alert.showAndWait();
 
-                    // Close the current stage
-                    Stage currentStage = (Stage) register_btn.getScene().getWindow();
-                    currentStage.close();
+                // Close the current stage
+                Stage currentStage = (Stage) register_btn.getScene().getWindow();
+                currentStage.close();
 
-                    // Open the login stage
-                    Stage primaryStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/LoginAdmin.fxml"));
-                    primaryStage.initStyle(StageStyle.UNDECORATED);
-                    primaryStage.setScene(new Scene(root));
-                    primaryStage.show();
-                }
+                // Open the login stage
+                Stage primaryStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/parkingbookingsystems/frontend/LoginAdmin.fxml"));
+                primaryStage.initStyle(StageStyle.UNDECORATED);
+                primaryStage.setScene(new Scene(root));
+                primaryStage.show();
 
             } catch (SQLException e) {
                 e.printStackTrace();
