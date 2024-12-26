@@ -59,38 +59,9 @@ public class LoginUserController {
     }
 
 
-    private int getUserIdFromDatabase(String username, String password) {
-        String sql = "SELECT user_id FROM [User] WHERE username = ? AND password = ?";
-        int userId = -1; // Default value if user is not found
-
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ParkingBookingSystem", "sa", "Huynhthien123");
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    userId = rs.getInt("user_id");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return userId;
-    }
-
-
-    public int getCurrentUserId() {
-        return this.currentUserId;
-    }
-
-
-
     @FXML
     public void logUser() throws SQLException {
-        String sql = "SELECT * FROM [User] WHERE username = ?";
+        String sql = "SELECT * FROM [UserCredentials] WHERE username = ?";
         Database db = new Database();
         connect = db.connectdb();
 

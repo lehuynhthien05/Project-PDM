@@ -15,7 +15,7 @@ public class Database {
         ds.setPassword("Huynhthien123");
         ds.setServerName("localhost");
         ds.setPortNumber(1433);
-        ds.setDatabaseName("ParkingBookingSystem");
+        ds.setDatabaseName("Test");
 
         ds.setTrustServerCertificate(true);
         try {
