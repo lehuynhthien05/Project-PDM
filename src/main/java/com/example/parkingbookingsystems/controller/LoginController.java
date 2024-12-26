@@ -95,8 +95,8 @@ public class LoginController {
 
                                     //Pass the username to the UserInterface controller
                                     controller.setLoginUsername(loginUsername);
-                                    controller.setUsernameDisplay();
-                                    controller.loadUserInfo();
+//                                    controller.setUsernameDisplay();
+                                    controller.loadAdminInfo();
                                     Scene scene = new Scene(root);
                                     Stage stage = new Stage();
 
