@@ -503,48 +503,80 @@ public class UserInterface {
     private ResultSet result;
 
 
-    private void executeSQLCommandBooking() {
-        String sql = "INSERT INTO [Booking] (user_id, parkingArea_id, startTime, endTime, totalCost, status) VALUES (?, ?, ?, ?, ?, ?)";
+    private int executeSQLCommandBooking() {
+        String sqlGetMaxId = "SELECT MAX(booking_id) FROM Booking";
+        String sqlInsertBooking = "INSERT INTO Booking (booking_id, user_id, parkingArea_id, startTime, endTime, totalCost, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        int newBookingId = -1;
 
-        try (Connection conn = Database.connectdb();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = Database.connectdb()) {
+            // Get the current max booking_id
+            try (PreparedStatement pstmtGetMaxId = conn.prepareStatement(sqlGetMaxId);
+                 ResultSet rs = pstmtGetMaxId.executeQuery()) {
+                newBookingId = 1;
+                if (rs.next()) {
+                    newBookingId = rs.getInt(1) + 1;
+                }
 
-            pstmt.setInt(1, UserSession.getCurrentUserId());
-            pstmt.setString(2, ParkingSession.getParkingAreaId());
-            pstmt.setString(3, DateSession.getSelectedDate());
-            pstmt.setString(4, DateEndSession.getSelectedDate());
-            pstmt.setFloat(5, PriceSession.getTotalCost());
-            pstmt.setString(6, getStatus());
+                // Insert the new booking
+                try (PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsertBooking, Statement.RETURN_GENERATED_KEYS)) {
+                    pstmtInsert.setInt(1, newBookingId);
+                    pstmtInsert.setInt(2, UserSession.getCurrentUserId());
+                    pstmtInsert.setString(3, ParkingSession.getParkingAreaId());
+                    pstmtInsert.setString(4, DateSession.getSelectedDate());
+                    pstmtInsert.setString(5, DateEndSession.getSelectedDate());
+                    pstmtInsert.setFloat(6, PriceSession.getTotalCost());
+                    pstmtInsert.setString(7, getStatus());
 
-            pstmt.executeUpdate(); // Execute the statement first
+                    BookingSession.setBookingId(newBookingId); // Set the booking ID in the session
 
-            // Retrieve the generated keys
-            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int bookingId = generatedKeys.getInt(1);
-                    BookingSession.setBookingId(bookingId);
-                } else {
-                    throw new SQLException("Creating booking failed, no ID obtained.");
+
+                    int affectedRows = pstmtInsert.executeUpdate();
+                    if (affectedRows == 0) {
+                        throw new SQLException("Creating booking failed, no rows affected.");
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return newBookingId;
     }
 
     private void executeSQLCommandPayment() {
-        String sql = "INSERT INTO [Payment] (booking_id, amount, paymentDate, paymentMethod, status) VALUES (?, ?, ?, ?, ?)";
+        String sqlGetMaxId = "SELECT MAX(payment_id) FROM Payment";
+        String sqlInsertPayment = "INSERT INTO Payment (payment_id, booking_id, amount, paymentDate, paymentMethod, status) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = Database.connectdb();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Database.connectdb()) {
+            // Get the current max payment_id
+            try (PreparedStatement pstmtGetMaxId = conn.prepareStatement(sqlGetMaxId);
+                 ResultSet rs = pstmtGetMaxId.executeQuery()) {
+                int newPaymentId = 1;
+                if (rs.next()) {
+                    newPaymentId = rs.getInt(1) + 1;
+                }
 
-            pstmt.setInt(1, BookingSession.getBookingId());
-            pstmt.setFloat(2, PriceSession.getTotalCost());
-            pstmt.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
-            pstmt.setString(4, getSelectedPaymentMethod());
-            pstmt.setString(5, "Completed");
+                // Ensure the booking_id exists in the Booking table
+                int bookingId = BookingSession.getBookingId();
+                String sqlCheckBooking = "SELECT COUNT(*) FROM Booking WHERE booking_id = ?";
+                try (PreparedStatement pstmtCheckBooking = conn.prepareStatement(sqlCheckBooking)) {
+                    pstmtCheckBooking.setInt(1, bookingId);
+                    try (ResultSet rsCheck = pstmtCheckBooking.executeQuery()) {
+                        if (rsCheck.next() && rsCheck.getInt(1) > 0) {
+                            // Insert the new payment
+                            try (PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsertPayment)) {
+                                pstmtInsert.setInt(1, newPaymentId);
+                                pstmtInsert.setInt(2, bookingId);
+                                pstmtInsert.setFloat(3, PriceSession.getTotalCost());
+                                pstmtInsert.setDate(4, java.sql.Date.valueOf(LocalDate.now()));
+                                pstmtInsert.setString(5, getSelectedPaymentMethod());
+                                pstmtInsert.setString(6, "Completed");
 
-            pstmt.executeUpdate();
+                                pstmtInsert.executeUpdate();
+                            }
+                        }
+                    }
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -630,6 +662,7 @@ public class UserInterface {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
+
             // Ensure all necessary values are set before executing the SQL command
             if (UserSession.getCurrentUserId() != -1 && !ParkingSession.getParkingAreaId().equals("-1") && DateSession.getSelectedDate() != null && DateEndSession.getSelectedDate() != null && PriceSession.getTotalCost() > 0) {
                 executeSQLCommandPayment();
@@ -644,8 +677,6 @@ public class UserInterface {
                 updateSelectedSlotsStyle();
 
                 paymentCheck.setVisible(true);
-
-
             } else {
                 // Show error message if any value is missing
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
