@@ -155,7 +155,7 @@
             <VBox prefHeight="660.0" prefWidth="10.0" />
          </children>
       </VBox>
-      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/stylesheet.css" visible="false">
+      <VBox fx:id="contentHome" layoutX="252.0" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/stylesheet.css">
          <children>
             <HBox fx:id="toolBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff;">
                <children>
@@ -253,7 +253,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <VBox fx:id="pickSlot" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@../css/Pickslot.css">
+      <VBox fx:id="pickSlot" layoutX="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="850.0" stylesheets="@../css/Pickslot.css" visible="false">
          <children>
             <AnchorPane prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: WHITE;" stylesheets="@../css/Pickslot.css">
                <children>
@@ -707,7 +707,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="slotName" fill="WHITE" layoutX="191.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                              <Text fx:id="slotName" fill="WHITE" layoutX="211.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

@@ -94,20 +94,33 @@ public class UserInterface {
 
 
     public void setUsernameDisplay() {
-        String sql = "SELECT * FROM [User] WHERE username = ?";
+        String sqlCredentials = "SELECT user_id FROM UserCredentials WHERE username = ?";
+        String sqlUser = "SELECT firstName, lastName FROM [User] WHERE user_id = ?";
+
         try (Connection connect = Database.connectdb();
-             PreparedStatement prepare = connect.prepareStatement(sql)) {
+             PreparedStatement prepareCredentials = connect.prepareStatement(sqlCredentials)) {
 
-            prepare.setString(1, this.loginUsername);
+            prepareCredentials.setString(1, this.loginUsername);
 
-            try (ResultSet result = prepare.executeQuery()) {
-                if (result.next()) {
-                    firstName = result.getString("firstName");
-                    lastName = result.getString("lastName");
-                    nameUser.setText(lastName + " " + firstName);
+            try (ResultSet resultCredentials = prepareCredentials.executeQuery()) {
+                if (resultCredentials.next()) {
+                    int userId = resultCredentials.getInt("user_id");
 
+                    try (PreparedStatement prepareUser = connect.prepareStatement(sqlUser)) {
+                        prepareUser.setInt(1, userId);
+
+                        try (ResultSet resultUser = prepareUser.executeQuery()) {
+                            if (resultUser.next()) {
+                                String firstName = resultUser.getString("firstName");
+                                String lastName = resultUser.getString("lastName");
+                                nameUser.setText(lastName + " " + firstName);
+                            } else {
+                                System.out.println("No user found.");
+                            }
+                        }
+                    }
                 } else {
-                    System.out.println("No user found.");
+                    System.out.println("No user credentials found.");
                 }
             }
         } catch (SQLException e) {
@@ -224,21 +237,34 @@ public class UserInterface {
     public void openChangePass() {passChange.setVisible(true);}
 
     public void loadUserInfo() {
-        String sql = "SELECT * FROM [User] WHERE username = ?";
+        String sqlCredentials = "SELECT user_id FROM UserCredentials WHERE username = ?";
+        String sqlUser = "SELECT * FROM [User] WHERE user_id = ?";
+
         try (Connection connect = Database.connectdb();
-             PreparedStatement prepare = connect.prepareStatement(sql)) {
+             PreparedStatement prepareCredentials = connect.prepareStatement(sqlCredentials)) {
 
-            prepare.setString(1, this.loginUsername);
+            prepareCredentials.setString(1, this.loginUsername);
 
-            try (ResultSet result = prepare.executeQuery()) {
-                if (result.next()) {
-                    userName.setText(result.getString("username"));
-                    firstNameUser.setText(result.getString("firstName"));
-                    lastNameUser.setText(result.getString("lastName"));
-                    userEmail.setText(result.getString("email"));
-                    userPhone.setText(result.getString("phoneNumber"));
+            try (ResultSet resultCredentials = prepareCredentials.executeQuery()) {
+                if (resultCredentials.next()) {
+                    int userId = resultCredentials.getInt("user_id");
+
+                    try (PreparedStatement prepareUser = connect.prepareStatement(sqlUser)) {
+                        prepareUser.setInt(1, userId);
+
+                        try (ResultSet resultUser = prepareUser.executeQuery()) {
+                            if (resultUser.next()) {
+                                firstNameUser.setText(resultUser.getString("firstName"));
+                                lastNameUser.setText(resultUser.getString("lastName"));
+                                userEmail.setText(resultUser.getString("email"));
+                                userPhone.setText(resultUser.getString("phoneNumber"));
+                            } else {
+                                System.out.println("No user found.");
+                            }
+                        }
+                    }
                 } else {
-                    System.out.println("No user found.");
+                    System.out.println("No user credentials found.");
                 }
             }
         } catch (SQLException e) {
@@ -331,7 +357,7 @@ public class UserInterface {
         if (selectedDate != null) {
             DateSession.setSelectedDate(selectedDate.toString());
         } else {
-            System.out.println("No date selected");
+            System.out.println();
         }
     }
 

@@ -55,7 +55,7 @@ public class LoginController {
 
     @FXML
     public void logAdmin() throws SQLException {
-        String sql = "SELECT * FROM admin WHERE username = ?";
+        String sql = "SELECT * FROM admincredentials WHERE username = ?";
 
         Database db = new Database();
         connect = db.connectdb();
