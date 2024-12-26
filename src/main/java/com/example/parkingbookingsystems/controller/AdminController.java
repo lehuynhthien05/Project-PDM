@@ -53,33 +53,7 @@ public class AdminController {
     @FXML
     private VBox parkingLotOverviewPage;
 
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String phone;
 
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
-//
-//    public void setUsernameDisplayAdmin() {
-//        adminName.setText(lastName + " " + firstName);
-//        adminName1.setText(lastName + " " + firstName);
-//        adminEmail.setText(email);
-//        adminPhone.setText(phone);
-//    }
 
 
     public void AdminProfile() {
@@ -115,35 +89,6 @@ public class AdminController {
 
 
 
-    private Stage homeStage;
-
-
-    public void setUsernameDisplay() {
-        String sql = "SELECT * FROM [Admin] WHERE username = ?";
-        try (Connection connect = Database.connectdb();
-             PreparedStatement prepare = connect.prepareStatement(sql)) {
-
-            prepare.setString(1, this.loginUsername);
-
-            try (ResultSet result = prepare.executeQuery()) {
-                if (result.next()) {
-                    firstName = result.getString("firstName");
-                    lastName = result.getString("lastName");
-                    AdminName.setText(lastName + " " + firstName);
-
-                } else {
-                    System.out.println("No user found.");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-//    public void UserProfile() {
-//        switchPage(profileArea);
-//    }
 
     @FXML
     private Label adminEmail;
@@ -253,28 +198,46 @@ public class AdminController {
 
     public void openChangePass() {passChange.setVisible(true);}
 
-    public void loadUserInfo() {
-        String sql = "SELECT * FROM [Admin] WHERE username = ?";
+    public void loadAdminInfo() {
+        String sql = """
+        SELECT a.firstName, a.lastName, a.email, a.phoneNumber, ac.username
+        FROM [Admin] a
+        JOIN AdminCredentials ac ON a.admin_id = ac.admin_id
+        WHERE ac.username = ?
+        """;
+
         try (Connection connect = Database.connectdb();
              PreparedStatement prepare = connect.prepareStatement(sql)) {
 
+            // Set the username parameter
             prepare.setString(1, this.loginUsername);
 
+            // Execute query
             try (ResultSet result = prepare.executeQuery()) {
                 if (result.next()) {
-                    adminName.setText(result.getString("username"));
-                    firstNameAdmin.setText(result.getString("firstName"));
-                    lastNameAdmin.setText(result.getString("lastName"));
-                    adminEmail.setText(result.getString("email"));
-                    adminPhone.setText(result.getString("phoneNumber"));
+                    // Extract fields
+                    String firstName = result.getString("firstName");
+                    String lastName = result.getString("lastName");
+                    String email = result.getString("email");
+                    String phoneNumber = result.getString("phoneNumber");
+                    String username = result.getString("username");
+
+                    // Update UI components
+                    AdminName.setText(firstName + " " + lastName);
+                    adminName.setText(username);
+                    firstNameAdmin.setText(firstName);
+                    lastNameAdmin.setText(lastName);
+                    adminEmail.setText(email);
+                    adminPhone.setText(phoneNumber);
                 } else {
-                    System.out.println("No user found.");
+                    System.out.println("No admin information found for the given username.");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void save() {
         if (!validateInput()) return;
@@ -361,6 +324,7 @@ public class AdminController {
 
 
     public void Analytics() {
+        barChart.getData().clear();
         initialize();
         switchPage(analyticsBar);
     }
@@ -463,24 +427,7 @@ public class AdminController {
         tableView.setItems(parkingService.getBookingUserData());
     }
 
-    public void returnToHome() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/parkingbookingsystems/frontend/AdminProfile.fxml"));
-            Parent root = loader.load();
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
-
-            Stage currentStage = (Stage) returnHome.getScene().getWindow();
-            currentStage.hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 

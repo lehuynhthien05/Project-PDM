@@ -93,41 +93,6 @@ public class UserInterface {
     private Stage homeStage;
 
 
-    public void setUsernameDisplay() {
-        String sqlCredentials = "SELECT user_id FROM UserCredentials WHERE username = ?";
-        String sqlUser = "SELECT firstName, lastName FROM [User] WHERE user_id = ?";
-
-        try (Connection connect = Database.connectdb();
-             PreparedStatement prepareCredentials = connect.prepareStatement(sqlCredentials)) {
-
-            prepareCredentials.setString(1, this.loginUsername);
-
-            try (ResultSet resultCredentials = prepareCredentials.executeQuery()) {
-                if (resultCredentials.next()) {
-                    int userId = resultCredentials.getInt("user_id");
-
-                    try (PreparedStatement prepareUser = connect.prepareStatement(sqlUser)) {
-                        prepareUser.setInt(1, userId);
-
-                        try (ResultSet resultUser = prepareUser.executeQuery()) {
-                            if (resultUser.next()) {
-                                String firstName = resultUser.getString("firstName");
-                                String lastName = resultUser.getString("lastName");
-                                nameUser.setText(lastName + " " + firstName);
-                            } else {
-                                System.out.println("No user found.");
-                            }
-                        }
-                    }
-                } else {
-                    System.out.println("No user credentials found.");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     public void UserProfile() {
         switchPage(profileArea);
@@ -237,40 +202,45 @@ public class UserInterface {
     public void openChangePass() {passChange.setVisible(true);}
 
     public void loadUserInfo() {
-        String sqlCredentials = "SELECT user_id FROM UserCredentials WHERE username = ?";
-        String sqlUser = "SELECT * FROM [User] WHERE user_id = ?";
+        String sql = """
+        SELECT u.firstName, u.lastName, u.email, u.phoneNumber, uc.username
+        FROM [User] u
+        JOIN UserCredentials uc ON u.user_id = uc.user_id
+        WHERE uc.username = ?
+        """;
 
         try (Connection connect = Database.connectdb();
-             PreparedStatement prepareCredentials = connect.prepareStatement(sqlCredentials)) {
+             PreparedStatement prepare = connect.prepareStatement(sql)) {
 
-            prepareCredentials.setString(1, this.loginUsername);
+            // Set the username parameter
+            prepare.setString(1, this.loginUsername);
 
-            try (ResultSet resultCredentials = prepareCredentials.executeQuery()) {
-                if (resultCredentials.next()) {
-                    int userId = resultCredentials.getInt("user_id");
+            // Execute query
+            try (ResultSet result = prepare.executeQuery()) {
+                if (result.next()) {
+                    // Extract fields
+                    String firstName = result.getString("firstName");
+                    String lastName = result.getString("lastName");
+                    String email = result.getString("email");
+                    String phoneNumber = result.getString("phoneNumber");
+                    String username = result.getString("username");
 
-                    try (PreparedStatement prepareUser = connect.prepareStatement(sqlUser)) {
-                        prepareUser.setInt(1, userId);
-
-                        try (ResultSet resultUser = prepareUser.executeQuery()) {
-                            if (resultUser.next()) {
-                                firstNameUser.setText(resultUser.getString("firstName"));
-                                lastNameUser.setText(resultUser.getString("lastName"));
-                                userEmail.setText(resultUser.getString("email"));
-                                userPhone.setText(resultUser.getString("phoneNumber"));
-                            } else {
-                                System.out.println("No user found.");
-                            }
-                        }
-                    }
+                    // Update UI components
+                    userName.setText(username);
+                    nameUser.setText(firstName + " " + lastName);
+                    firstNameUser.setText(firstName);
+                    lastNameUser.setText(lastName);
+                    userEmail.setText(email);
+                    userPhone.setText(phoneNumber);
                 } else {
-                    System.out.println("No user credentials found.");
+                    System.out.println("No admin information found for the given username.");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void save() {
         if (!validateInput()) return;

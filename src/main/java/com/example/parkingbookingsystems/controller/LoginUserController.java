@@ -97,7 +97,6 @@ public class LoginUserController {
 
                                     //Pass the username to the UserInterface controller
                                     controller.setLoginUsername(loginUsername);
-                                    controller.setUsernameDisplay();
                                     controller.loadUserInfo();
 
 //                                    controller.setUsernameDisplay();
