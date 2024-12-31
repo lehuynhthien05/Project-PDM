@@ -144,9 +144,12 @@ public class AdminController {
             return;
         }
 
-
-
-        String sql = "SELECT password FROM [Admin] WHERE username = ?";
+        String sql = """
+                    SELECT ac.password
+                    FROM AdminCredentials ac
+                    JOIN [Admin] a ON ac.admin_id = a.admin_id
+                    WHERE ac.username = ?
+                    """;
 
         try (Connection connect = Database.connectdb();
              PreparedStatement prepare = connect.prepareStatement(sql)) {
@@ -161,7 +164,7 @@ public class AdminController {
                         return;
                     }
                 } else {
-                    showAlert(Alert.AlertType.ERROR, "User not found.");
+                    showAlert(Alert.AlertType.ERROR, "Admin not found.");
                     return;
                 }
             }
@@ -169,8 +172,12 @@ public class AdminController {
             // Hash the new password
             String newHashedPassword = PasswordUtils.hashPassword(newPassword.getText());
 
-            // Update the password in the database
-            String updateSql = "UPDATE [Admin] SET password = ? WHERE username = ?";
+            // Update the password in the AdminCredentials table
+            String updateSql = """
+                            UPDATE AdminCredentials
+                            SET password = ?
+                            WHERE username = ?
+                            """;
             try (PreparedStatement updatePrepare = connect.prepareStatement(updateSql)) {
                 updatePrepare.setString(1, newHashedPassword);
                 updatePrepare.setString(2, this.loginUsername);
@@ -242,22 +249,29 @@ public class AdminController {
     public void save() {
         if (!validateInput()) return;
 
-        String sql = "UPDATE [Admin] SET username = ?, firstName = ?, lastName = ?, email = ?, phoneNumber = ? WHERE username = ?";
+        String sql = """
+                    UPDATE [Admin]
+                    SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?
+                    WHERE admin_id = (
+                        SELECT admin_id FROM AdminCredentials WHERE username = ?
+                    )
+                    """;
+
         try (Connection connect = Database.connectdb();
              PreparedStatement prepare = connect.prepareStatement(sql)) {
 
-            prepare.setString(1, adminName.getText());
-            prepare.setString(2, firstNameAdmin.getText());
-            prepare.setString(3, lastNameAdmin.getText());
-            prepare.setString(4, adminEmail.getText());
-            prepare.setString(5, adminPhone.getText());
-            prepare.setString(6, this.loginUsername);
+            // Set parameters
+            prepare.setString(1, firstNameAdmin.getText());
+            prepare.setString(2, lastNameAdmin.getText());
+            prepare.setString(3, adminEmail.getText());
+            prepare.setString(4, adminPhone.getText());
+            prepare.setString(5, this.loginUsername);
 
             int rowsAffected = prepare.executeUpdate();
             if (rowsAffected > 0) {
                 showAlert(Alert.AlertType.INFORMATION, "Save Successful");
             } else {
-                showAlert(Alert.AlertType.ERROR, "No user found to update.");
+                showAlert(Alert.AlertType.ERROR, "No admin found to update.");
             }
 
         } catch (SQLException e) {
@@ -265,6 +279,7 @@ public class AdminController {
             showAlert(Alert.AlertType.ERROR, "Failed to save data. Please try again.");
         }
     }
+
 
     private boolean validateInput() {
         if (firstNameAdmin.getText().isEmpty() || lastNameAdmin.getText().isEmpty()) {
