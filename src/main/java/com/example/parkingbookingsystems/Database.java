@@ -11,11 +11,11 @@ public class Database {
     public static Connection connectdb() {
 
         SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setUser("sa");
-        ds.setPassword("Huynhthien123");
+        ds.setUser("${DB_USERNAME}");
+        ds.setPassword("${DB_PASSWORD}");
         ds.setServerName("localhost");
         ds.setPortNumber(1433);
-        ds.setDatabaseName("Test");
+        ds.setDatabaseName("${DB_NAME}");
 
         ds.setTrustServerCertificate(true);
         try {
